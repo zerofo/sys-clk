@@ -36,10 +36,10 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
 
         renderer->drawString("程序ID：", false, 20, 90, SMALL_TEXT_SIZE, DESC_COLOR);
         snprintf(buf, sizeof(buf), "%016lX", context->applicationId);
-        renderer->drawString(buf, false, 101, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
+        renderer->drawString(buf, false, 81, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
 
         renderer->drawString("配置：", false, 266, 90, SMALL_TEXT_SIZE, DESC_COLOR);
-        renderer->drawString(sysclkFormatProfile(context->profile, true), false, 322, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
+        renderer->drawString(sysclkFormatProfile(context->profile, true), false, 302, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
 
         static struct
         {
@@ -48,7 +48,7 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
         } freqOffsets[SysClkModule_EnumMax] = {
             { SysClkModule_CPU, 61 },
             { SysClkModule_GPU, 204 },
-            { SysClkModule_MEM, 322 },
+            { SysClkModule_MEM, 332 },
         };
 
         for(unsigned int i = 0; i < SysClkModule_EnumMax; i++)
@@ -68,7 +68,7 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
         } tempOffsets[SysClkModule_EnumMax] = {
             { SysClkThermalSensor_SOC, 60 },
             { SysClkThermalSensor_PCB, 204 },
-            { SysClkThermalSensor_Skin, 322 },
+            { SysClkThermalSensor_Skin, 332 },
         };
 
         renderer->drawString("芯片：", false, 20, 140, SMALL_TEXT_SIZE, DESC_COLOR);
