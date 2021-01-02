@@ -39,7 +39,7 @@ CheatSheetTab::CheatSheetTab()
 
     gpuTable->addRow(brls::TableRowType::BODY, "最高", "921 MHz");
     gpuTable->addRow(brls::TableRowType::BODY, "官方底座模式", "768 MHz");
-    gpuTable->addRow(brls::TableRowType::BODY, "手持模式最高", "460 MHz");
+    gpuTable->addRow(brls::TableRowType::BODY, "手持模式最高", "768 MHz");
     gpuTable->addRow(brls::TableRowType::BODY, "官方手持模式", "384 MHz");
 
     this->addView(gpuTable);
