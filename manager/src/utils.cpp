@@ -51,9 +51,9 @@ std::string formatTemp(uint32_t temp)
 void errorResult(std::string tag, Result rc)
 {
 #ifdef __SWITCH__
-    brls::Logger::error("[0x%x] %s failed - %04d-%04d", rc, tag.c_str(), R_MODULE(rc), R_DESCRIPTION(rc));
+    brls::Logger::error("[0x%x] %s 失败 - %04d-%04d", rc, tag.c_str(), R_MODULE(rc), R_DESCRIPTION(rc));
 #else
-    brls::Logger::error("[0x%x] %s failed - xxxx-xxxx", rc, tag.c_str());
+    brls::Logger::error("[0x%x] %s 失败 - xxxx-xxxx", rc, tag.c_str());
 #endif
 }
 
@@ -80,15 +80,15 @@ brls::SelectListItem* createFreqListItem(SysClkModule module, uint32_t selectedF
     switch (module)
     {
         case SysClkModule_CPU:
-            name = "CPU Frequency";
+            name = "CPU频率";
             table = sysclk_g_freq_table_cpu_hz;
             break;
         case SysClkModule_GPU:
-            name = "GPU Frequency";
+            name = "GPU频率";
             table = sysclk_g_freq_table_gpu_hz;
             break;
         case SysClkModule_MEM:
-            name = "MEM Frequency";
+            name = "内存频率";
             table = sysclk_g_freq_table_mem_hz;
             break;
         default:

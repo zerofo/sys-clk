@@ -39,7 +39,7 @@ Logo::Logo(LogoStyle style) {
     if (style == LogoStyle::HEADER)
     {
         this->logoLabel->setFontSize(LOGO_HEADER_FONT_SIZE);
-        this->descLabel = new brls::Label(brls::LabelStyle::LIST_ITEM, "manager");
+        this->descLabel = new brls::Label(brls::LabelStyle::LIST_ITEM, "管理器");
         this->descLabel->setParent(this);
         this->descLabel->setFontSize(LOGO_DESC_FONT_SIZE);
     }

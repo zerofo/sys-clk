@@ -72,11 +72,11 @@ static inline const char* sysclkFormatModule(SysClkModule module, bool pretty)
     switch(module)
     {
         case SysClkModule_CPU:
-            return pretty ? "CPU" : "cpu";
+            return pretty ? "CPU" : "中央处理器";
         case SysClkModule_GPU:
-            return pretty ? "GPU" : "gpu";
+            return pretty ? "GPU" : "图形处理器";
         case SysClkModule_MEM:
-            return pretty ? "Memory" : "mem";
+            return pretty ? "内存" : "内存控制器";
         default:
             return NULL;
     }
@@ -87,11 +87,11 @@ static inline const char* sysclkFormatThermalSensor(SysClkThermalSensor thermSen
     switch(thermSensor)
     {
         case SysClkThermalSensor_SOC:
-            return pretty ? "SOC" : "soc";
+            return pretty ? "芯片" : "片上系统";
         case SysClkThermalSensor_PCB:
-            return pretty ? "PCB" : "pcb";
+            return pretty ? "主板" : "印制电路板";
         case SysClkThermalSensor_Skin:
-            return pretty ? "Skin" : "skin";
+            return pretty ? "表面" : "机器表面";
         default:
             return NULL;
     }
@@ -102,15 +102,15 @@ static inline const char* sysclkFormatProfile(SysClkProfile profile, bool pretty
     switch(profile)
     {
         case SysClkProfile_Docked:
-            return pretty ? "Docked" : "docked";
+            return pretty ? "底座" : "底座模式";
         case SysClkProfile_Handheld:
-            return pretty ? "Handheld" : "handheld";
+            return pretty ? "手持" : "手持模式";
         case SysClkProfile_HandheldCharging:
-            return pretty ? "Charging" : "handheld_charging";
+            return pretty ? "手持充电" : "手持充电模式";
         case SysClkProfile_HandheldChargingUSB:
-            return pretty ? "USB Charger" : "handheld_charging_usb";
+            return pretty ? "手持USB充电" : "手持USB充电模式";
         case SysClkProfile_HandheldChargingOfficial:
-            return pretty ? "Official Charger" : "handheld_charging_official";
+            return pretty ? "手持官方充电" : "手持官方充电模式";
         default:
             return NULL;
     }

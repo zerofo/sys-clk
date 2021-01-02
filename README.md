@@ -5,7 +5,7 @@ Switch sysmodule allowing you to set cpu/gpu/mem clocks according to the running
 ## Installation
 
 The following instructions assumes you have a Nintendo Switch running Atmosphère, updated to at least the latest stable version.
-Copy the `atmosphere`, and `switch` folders at the root of your sdcard, overwriting files if prompted. Also copy the `config` folder if you're not updating, to include default settings.
+Copy the `atmosphere` or `sxos`, and `switch` folders at the root of your sdcard, overwriting files if prompted. Also copy the `config` folder if you're not updating, to include default settings.
 
 **Note:** sys-clk-overlay requires to have [Tesla](https://gbatemp.net/threads/tesla-the-nintendo-switch-overlay-menu.557362/) installed and running
 
@@ -39,6 +39,9 @@ Copy the `atmosphere`, and `switch` folders at the root of your sdcard, overwrit
 
 	`/atmosphere/contents/00FF0000636C6BFF/exefs.nsp`
 	`/atmosphere/contents/00FF0000636C6BFF/flags/boot2.flag`
+	or
+	`/sxos/titles/00FF0000636C6BFF/exefs.nsp`
+	`/sxos/titles/00FF0000636C6BFF/flags/boot2.flag`
 
 ## Config
 

@@ -34,7 +34,7 @@ void RefreshTask::onStart()
     Result rc = sysclkIpcGetCurrentContext(&this->oldContext);
     if (R_FAILED(rc))
     {
-        brls::Logger::error("Unable to get context");
+        brls::Logger::error("无法获取上下文");
         errorResult("sysclkIpcGetCurrentContext", rc);
     }
 }
@@ -84,6 +84,6 @@ void RefreshTask::run(retro_time_t currentTime)
     }
     else
     {
-        brls::Logger::error("Unable to refresh context");
+        brls::Logger::error("无法刷新上下文");
     }
 }

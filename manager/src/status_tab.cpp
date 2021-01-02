@@ -37,9 +37,9 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
 
     if (R_FAILED(rc))
     {
-        brls::Logger::error("Unable to get context");
+        brls::Logger::error("无法获取上下文");
         errorResult("sysclkIpcGetCurrentContext", rc);
-        brls::Application::crash("Could not get the current sys-clk context, please check that it is correctly installed and enabled.");
+        brls::Application::crash("无法获取当前sys-clk上下文，请检查它是否已正确安装和启用。");
         return;
     }
 
@@ -48,18 +48,18 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
     this->setMarginBottom(20);
 
     // Enabled option
-    brls::ToggleListItem *serviceEnabledListItem = new brls::ToggleListItem("Enable service", context.enabled, "", "Yes", "No");
+    brls::ToggleListItem *serviceEnabledListItem = new brls::ToggleListItem("启用服务", context.enabled, "", "是", "否");
 
     serviceEnabledListItem->getClickEvent()->subscribe([this, serviceEnabledListItem](View* view)
     {
         bool enabled = serviceEnabledListItem->getToggleState();
-        brls::Logger::info("New service state = %d", enabled);
+        brls::Logger::info("新的服务状态 = %d", enabled);
 
         Result rc = sysclkIpcSetEnabled(enabled);
 
         if (R_FAILED(rc))
         {
-            brls::Logger::error("Unable to set enabled state");
+            brls::Logger::error("无法设置启用状态");
             errorResult("sysclkIpcSetEnabled", rc);
             // TODO: Put it back to on / off
         }
@@ -70,7 +70,7 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
     this->addView(serviceEnabledListItem);
 
     // Frequencies
-    brls::Header *hardwareHeader = new brls::Header("Hardware");
+    brls::Header *hardwareHeader = new brls::Header("硬件");
     this->addView(hardwareHeader);
 
     StatusGrid *frequenciesLayout = new StatusGrid();
@@ -79,7 +79,7 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
 
     this->cpuFreqCell = new StatusCell("CPU", formatFreq(context.freqs[SysClkModule_CPU]));
     this->gpuFreqCell = new StatusCell("GPU", formatFreq(context.freqs[SysClkModule_GPU]));
-    this->memFreqCell = new StatusCell("MEM", formatFreq(context.freqs[SysClkModule_MEM]));
+    this->memFreqCell = new StatusCell("内存", formatFreq(context.freqs[SysClkModule_MEM]));
 
     frequenciesLayout->addView(this->cpuFreqCell);
     frequenciesLayout->addView(this->gpuFreqCell);
@@ -92,8 +92,8 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
     tempsLayout->setSpacing(22);
     tempsLayout->setHeight(40);
 
-    this->socTempCell = new StatusCell("SOC", formatTemp(context.temps[SysClkThermalSensor_SOC]));
-    this->pcbTempCell = new StatusCell("PCB", formatTemp(context.temps[SysClkThermalSensor_PCB]));
+    this->socTempCell = new StatusCell("芯片", formatTemp(context.temps[SysClkThermalSensor_SOC]));
+    this->pcbTempCell = new StatusCell("主板", formatTemp(context.temps[SysClkThermalSensor_PCB]));
 
     if (context.temps[SysClkThermalSensor_SOC] > DANGEROUS_TEMP_THRESHOLD)
         this->socTempCell->setValueColor(DANGEROUS_TEMP_COLOR);
@@ -108,15 +108,15 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
     this->addView(tempsLayout);
 
     // Info
-    brls::Header *systemHeader = new brls::Header("System");
+    brls::Header *systemHeader = new brls::Header("系统");
     this->addView(systemHeader);
 
     InfoGrid *infoLayout = new InfoGrid();
     infoLayout->setSpacing(22);
     infoLayout->setHeight(40);
 
-    this->profileCell   = new StatusCell("Profile", formatProfile(context.profile));
-    this->tidCell       = new StatusCell("Application ID", formatTid(context.applicationId));
+    this->profileCell   = new StatusCell("配置", formatProfile(context.profile));
+    this->tidCell       = new StatusCell("应用程序ID", formatTid(context.applicationId));
 
     infoLayout->addView(this->profileCell);
     infoLayout->addView(this->tidCell);
@@ -194,13 +194,13 @@ void StatusTab::updateWarningForProfile(SysClkProfile profile, bool animated)
             if (this->warningLabel->isHidden())
                 this->warningLabel->show([](){});
 
-            this->warningLabel->setText("\uE140  Maximum GPU frequency is " + formatFreq(SYSCLK_GPU_HANDHELD_MAX_HZ) + " because you're in handheld mode.");
+            this->warningLabel->setText("\uE140  最大GPU频率是 " + formatFreq(SYSCLK_GPU_HANDHELD_MAX_HZ) + " 因为您正处于手持模式");
             break;
         case SysClkProfile_HandheldChargingUSB:
             if (this->warningLabel->isHidden())
                 this->warningLabel->show([](){});
 
-            this->warningLabel->setText("\uE140  Maximum GPU frequency is " + formatFreq(SYSCLK_GPU_UNOFFICIAL_CHARGER_MAX_HZ) + " because you're using an unofficial charger type.");
+            this->warningLabel->setText("\uE140  最大GPU频率是 " + formatFreq(SYSCLK_GPU_UNOFFICIAL_CHARGER_MAX_HZ) + " 因为你用的是非官方的充电器。");
             break;
         default:
             if (!this->warningLabel->isHidden())

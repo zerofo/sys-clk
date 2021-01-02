@@ -29,11 +29,11 @@ static inline const char* sysclkFormatConfigValue(SysClkConfigValue val, bool pr
     switch(val)
     {
         case SysClkConfigValue_PollingIntervalMs:
-            return pretty ? "Polling Interval (ms)" : "poll_interval_ms";
+            return pretty ? "轮询间隔（毫秒）" : "轮询间隔时间（毫秒）";
         case SysClkConfigValue_TempLogIntervalMs:
-            return pretty ? "Temperature logging interval (ms)" : "temp_log_interval_ms";
+            return pretty ? "温度记录间隔（毫秒）" : "温度记录间隔时间（毫秒）";
         case SysClkConfigValue_CsvWriteIntervalMs:
-            return pretty ? "CSV write interval (ms)" : "csv_write_interval_ms";
+            return pretty ? "CSV写入间隔（毫秒）" : "CSV文件写入间隔时间（毫秒）";
         default:
             return NULL;
     }

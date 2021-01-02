@@ -30,7 +30,7 @@
 
 AppProfileFrame::AppProfileFrame(Title* title) : ThumbnailFrame(), title(title)
 {
-    this->setTitle("Edit application profile");
+    this->setTitle("编辑应用程序配置文件");
     this->setIcon(new brls::MaterialIcon("\uE315"));
 
     // Get the freqs
@@ -61,13 +61,13 @@ AppProfileFrame::AppProfileFrame(Title* title) : ThumbnailFrame(), title(title)
         if (R_SUCCEEDED(rc))
         {
             // TODO: set the tick mark color to blue/green once borealis has rich text support
-            brls::Application::notify("\uE14B Profile saved");
+            brls::Application::notify("\uE14B 配置文件已保存");
             brls::Application::popView(brls::ViewAnimation::SLIDE_RIGHT);
         }
         else
         {
             errorResult("sysclkIpcSetProfiles", rc);
-            brls::Application::notify("An error occured while saving the profile - see logs for more details");
+            brls::Application::notify("保存配置文件时出错 - 有关详细信息，请参阅日志");
         }
     });
 
@@ -98,7 +98,7 @@ void AppProfileFrame::addFreqs(brls::List* list, SysClkProfile profile)
         this->onProfileChanged();
         this->profiles.mhzMap[profile][SysClkModule_CPU] = result == 0 ? result : sysclk_g_freq_table_cpu_hz[result - 1];
 
-        brls::Logger::debug("Caching freq for module %d and profile %d to %" PRIu32, SysClkModule_CPU, profile, this->profiles.mhzMap[profile][SysClkModule_CPU]);
+        brls::Logger::debug("缓存模块频率 %d 和配置文件 %d 到 %" PRIu32, SysClkModule_CPU, profile, this->profiles.mhzMap[profile][SysClkModule_CPU]);
     });
     list->addView(cpuListItem);
 
@@ -111,7 +111,7 @@ void AppProfileFrame::addFreqs(brls::List* list, SysClkProfile profile)
         this->onProfileChanged();
         this->profiles.mhzMap[profile][SysClkModule_GPU] = result == 0 ? result : sysclk_g_freq_table_gpu_hz[result - 1];
 
-        brls::Logger::debug("Caching freq for module %d and profile %d to %" PRIu32, SysClkModule_GPU, profile, this->profiles.mhzMap[profile][SysClkModule_GPU]);
+        brls::Logger::debug("缓存模块频率 %d 和配置文件 %d 到 %" PRIu32, SysClkModule_GPU, profile, this->profiles.mhzMap[profile][SysClkModule_GPU]);
     });
     list->addView(gpuListItem);
 
@@ -124,7 +124,7 @@ void AppProfileFrame::addFreqs(brls::List* list, SysClkProfile profile)
         this->onProfileChanged();
         this->profiles.mhzMap[profile][SysClkModule_MEM] = result == 0 ? result : sysclk_g_freq_table_mem_hz[result - 1];
 
-        brls::Logger::debug("Caching freq for module %d and profile %d to %" PRIu32, SysClkModule_MEM, profile, this->profiles.mhzMap[profile][SysClkModule_MEM]);
+        brls::Logger::debug("缓存模块频率 %d 和配置文件 %d 到 %" PRIu32, SysClkModule_MEM, profile, this->profiles.mhzMap[profile][SysClkModule_MEM]);
     });
     list->addView(memListItem);
 }
@@ -132,20 +132,20 @@ void AppProfileFrame::addFreqs(brls::List* list, SysClkProfile profile)
 void AppProfileFrame::onProfileChanged()
 {
     this->getSidebar()->getButton()->setState(brls::ButtonState::ENABLED);
-    this->updateActionHint(brls::Key::B, "Cancel");
+    this->updateActionHint(brls::Key::B, "取消");
 }
 
 bool AppProfileFrame::onCancel()
 {
     if (this->hasProfileChanged())
     {
-        brls::Dialog* dialog = new brls::Dialog("You have unsaved changes to this profile!\nAre you sure you want to discard them?");
+        brls::Dialog* dialog = new brls::Dialog("您对此配置文件有未保存的更改！\n你确定要丢弃它们吗？");
 
-        dialog->addButton("No", [dialog](brls::View* view){
+        dialog->addButton("否", [dialog](brls::View* view){
             dialog->close();
         });
 
-        dialog->addButton("Yes", [dialog](brls::View* view){
+        dialog->addButton("是", [dialog](brls::View* view){
             dialog->close([](){
                 brls::Application::popView(brls::ViewAnimation::SLIDE_RIGHT);
             });

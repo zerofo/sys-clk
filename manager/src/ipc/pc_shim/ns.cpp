@@ -111,7 +111,7 @@ bool NsShimStore::GetControlData(NsApplicationControlData* out_data, size_t size
     FILE* f = fopen(it->second.second.c_str(), "rb");
     if(!f)
     {
-        printf("[NsShimStore] Could not open file '%s'\n", it->second.second.c_str());
+        printf("[NsShimStore] 无法打开文件 '%s'\n", it->second.second.c_str());
         return false;
     }
     *out_size = fread(out_data->icon, sizeof(out_data->icon), 1, f);
