@@ -41,12 +41,12 @@ MainFrame::MainFrame() : TabFrame()
     AppProfilesTab *tab = new AppProfilesTab();
 
     this->addTab("状态", new StatusTab(this->refreshTask));
-    this->addTab("应用程序配置", tab);
-    this->addTab("高级设置", new AdvancedSettingsTab());
+    this->addTab("程序配置", tab);
+    this->addTab("高级配置", new AdvancedSettingsTab());
 
     this->addSeparator();
 
-    this->addTab("备忘", new CheatSheetTab());
+    this->addTab("备忘录", new CheatSheetTab());
     this->addTab("关于", new AboutTab());
 }
 

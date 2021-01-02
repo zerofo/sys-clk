@@ -48,7 +48,7 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
     this->setMarginBottom(20);
 
     // Enabled option
-    brls::ToggleListItem *serviceEnabledListItem = new brls::ToggleListItem("启用服务", context.enabled, "", "是", "否");
+    brls::ToggleListItem *serviceEnabledListItem = new brls::ToggleListItem("服务启用", context.enabled, "", "是", "否");
 
     serviceEnabledListItem->getClickEvent()->subscribe([this, serviceEnabledListItem](View* view)
     {

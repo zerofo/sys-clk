@@ -87,9 +87,9 @@ static inline const char* sysclkFormatThermalSensor(SysClkThermalSensor thermSen
     switch(thermSensor)
     {
         case SysClkThermalSensor_SOC:
-            return pretty ? "芯片" : "片上系统";
+            return pretty ? "芯片" : "SOC";
         case SysClkThermalSensor_PCB:
-            return pretty ? "主板" : "印制电路板";
+            return pretty ? "主板" : "PCB";
         case SysClkThermalSensor_Skin:
             return pretty ? "表面" : "机器表面";
         default:
@@ -102,15 +102,15 @@ static inline const char* sysclkFormatProfile(SysClkProfile profile, bool pretty
     switch(profile)
     {
         case SysClkProfile_Docked:
-            return pretty ? "底座" : "底座模式";
+            return pretty ? "底座模式" : "底座模式";
         case SysClkProfile_Handheld:
-            return pretty ? "手持" : "手持模式";
+            return pretty ? "手持模式" : "手持模式";
         case SysClkProfile_HandheldCharging:
-            return pretty ? "手持充电" : "手持充电模式";
+            return pretty ? "手持充电模式" : "手持充电模式";
         case SysClkProfile_HandheldChargingUSB:
-            return pretty ? "手持USB充电" : "手持USB充电模式";
+            return pretty ? "USB充电手持模式" : "USB充电手持充电模式";
         case SysClkProfile_HandheldChargingOfficial:
-            return pretty ? "手持官方充电" : "手持官方充电模式";
+            return pretty ? "官方充电手持模式" : "官方充电器手持充电模式";
         default:
             return NULL;
     }

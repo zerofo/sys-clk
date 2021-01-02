@@ -30,7 +30,7 @@
 
 AppProfileFrame::AppProfileFrame(Title* title) : ThumbnailFrame(), title(title)
 {
-    this->setTitle("编辑应用程序配置文件");
+    this->setTitle("编辑配置文件");
     this->setIcon(new brls::MaterialIcon("\uE315"));
 
     // Get the freqs

@@ -30,7 +30,7 @@
 #define APP_ASSET(p) APP_RESOURCES p
 
 std::string formatListItemTitle(const std::string str, size_t maxScore = 140);
-brls::SelectListItem* createFreqListItem(SysClkModule module, uint32_t selectedFreqInMhz, std::string defaultString = "Do not override");
+brls::SelectListItem* createFreqListItem(SysClkModule module, uint32_t selectedFreqInMhz, std::string defaultString = "无更改");
 
 std::string formatFreq(uint32_t freq);
 std::string formatTid(uint64_t tid);

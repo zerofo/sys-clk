@@ -29,7 +29,7 @@ void MainGui::listUI()
     });
     this->listElement->addItem(this->enabledToggle);
 
-    tsl::elm::ListItem* appProfileItem = new tsl::elm::ListItem("编辑应用程序配置文件");
+    tsl::elm::ListItem* appProfileItem = new tsl::elm::ListItem("编辑配置文件");
     appProfileItem->setClickListener([this](s64 keys) {
         if((keys & KEY_A) == KEY_A && this->context)
         {
@@ -43,7 +43,7 @@ void MainGui::listUI()
 
     this->listElement->addItem(new tsl::elm::CategoryHeader("高级配置"));
 
-    tsl::elm::ListItem* globalOverrideItem = new tsl::elm::ListItem("临时配置");
+    tsl::elm::ListItem* globalOverrideItem = new tsl::elm::ListItem("临时设置");
     globalOverrideItem->setClickListener([this](s64 keys) {
         if((keys & KEY_A) == KEY_A)
         {

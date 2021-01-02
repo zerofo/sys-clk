@@ -34,12 +34,12 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
     {
         char buf[32];
 
-        renderer->drawString("应用程序ID： ", false, 20, 90, SMALL_TEXT_SIZE, DESC_COLOR);
+        renderer->drawString("程序ID：", false, 20, 90, SMALL_TEXT_SIZE, DESC_COLOR);
         snprintf(buf, sizeof(buf), "%016lX", context->applicationId);
-        renderer->drawString(buf, false, 81, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
+        renderer->drawString(buf, false, 101, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
 
-        renderer->drawString("配置文件： ", false, 246, 90, SMALL_TEXT_SIZE, DESC_COLOR);
-        renderer->drawString(sysclkFormatProfile(context->profile, true), false, 302, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
+        renderer->drawString("配置：", false, 266, 90, SMALL_TEXT_SIZE, DESC_COLOR);
+        renderer->drawString(sysclkFormatProfile(context->profile, true), false, 322, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
 
         static struct
         {
@@ -48,7 +48,7 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
         } freqOffsets[SysClkModule_EnumMax] = {
             { SysClkModule_CPU, 61 },
             { SysClkModule_GPU, 204 },
-            { SysClkModule_MEM, 342 },
+            { SysClkModule_MEM, 322 },
         };
 
         for(unsigned int i = 0; i < SysClkModule_EnumMax; i++)
@@ -67,13 +67,13 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
             std::uint32_t x;
         } tempOffsets[SysClkModule_EnumMax] = {
             { SysClkThermalSensor_SOC, 60 },
-            { SysClkThermalSensor_PCB, 165 },
-            { SysClkThermalSensor_Skin, 268 },
+            { SysClkThermalSensor_PCB, 204 },
+            { SysClkThermalSensor_Skin, 322 },
         };
 
         renderer->drawString("芯片：", false, 20, 140, SMALL_TEXT_SIZE, DESC_COLOR);
-        renderer->drawString("主板：", false, 125, 140, SMALL_TEXT_SIZE, DESC_COLOR);
-        renderer->drawString("表面：", false, 230, 140, SMALL_TEXT_SIZE, DESC_COLOR);
+        renderer->drawString("主板：", false, 162, 140, SMALL_TEXT_SIZE, DESC_COLOR);
+        renderer->drawString("表面：", false, 295, 140, SMALL_TEXT_SIZE, DESC_COLOR);
         for(unsigned int i = 0; i < SysClkModule_EnumMax; i++)
         {
             std::uint32_t millis = this->context->temps[tempOffsets[i].s];
