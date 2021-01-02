@@ -21,7 +21,7 @@ pushd "$ROOT_DIR/sysmodule"
 make -j$CORES
 popd > /dev/null
 
-for p in "$AMS_DIR $SXOS_DIR"; do
+for p in $AMS_DIR $SXOS_DIR; do
     mkdir -p "$p/$TITLE_ID/flags"
     cp -vf "$ROOT_DIR/sysmodule/out/sys-clk.nsp" "$p/$TITLE_ID/exefs.nsp"
     >"$p/$TITLE_ID/flags/boot2.flag"
