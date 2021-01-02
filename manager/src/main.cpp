@@ -32,6 +32,7 @@
 
 int main(int argc, char* argv[])
 {
+    brls::i18n::loadTranslations();
     // Init the app
     if (!brls::Application::init(APP_TITLE))
     {

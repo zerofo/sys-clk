@@ -94,6 +94,7 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
 
     this->socTempCell = new StatusCell("芯片", formatTemp(context.temps[SysClkThermalSensor_SOC]));
     this->pcbTempCell = new StatusCell("主板", formatTemp(context.temps[SysClkThermalSensor_PCB]));
+    this->skinTempCell = new StatusCell("表面", formatTemp(context.temps[SysClkThermalSensor_Skin]));
 
     if (context.temps[SysClkThermalSensor_SOC] > DANGEROUS_TEMP_THRESHOLD)
         this->socTempCell->setValueColor(DANGEROUS_TEMP_COLOR);
@@ -101,9 +102,10 @@ StatusTab::StatusTab(RefreshTask *refreshTask) :
     if (context.temps[SysClkThermalSensor_PCB] > DANGEROUS_TEMP_THRESHOLD)
         this->pcbTempCell->setValueColor(DANGEROUS_TEMP_COLOR);
 
-    tempsLayout->addView(new brls::Rectangle(nvgRGBA(0, 0, 0, 0)));
+    //tempsLayout->addView(new brls::Rectangle(nvgRGBA(0, 0, 0, 0)));
     tempsLayout->addView(this->socTempCell);
     tempsLayout->addView(this->pcbTempCell);
+    tempsLayout->addView(this->skinTempCell);
 
     this->addView(tempsLayout);
 

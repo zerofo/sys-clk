@@ -89,9 +89,9 @@ static inline const char* sysclkFormatThermalSensor(SysClkThermalSensor thermSen
     switch(thermSensor)
     {
         case SysClkThermalSensor_SOC:
-            return pretty ? "芯片" : "SOC";
+            return pretty ? "芯片" : "芯片系统";
         case SysClkThermalSensor_PCB:
-            return pretty ? "主板" : "PCB";
+            return pretty ? "主板" : "印制电路板";
         case SysClkThermalSensor_Skin:
             return pretty ? "表面" : "机器表面";
         default:
