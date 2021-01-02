@@ -200,7 +200,7 @@ void StatusTab::updateWarningForProfile(SysClkProfile profile, bool animated)
             if (this->warningLabel->isHidden())
                 this->warningLabel->show([](){});
 
-            this->warningLabel->setText("\uE140  最大GPU频率是 " + formatFreq(SYSCLK_GPU_UNOFFICIAL_CHARGER_MAX_HZ) + " 因为你用的是非官方的充电器。");
+            this->warningLabel->setText("\uE140  最大GPU频率是 " + formatFreq(SYSCLK_GPU_UNOFFICIAL_CHARGER_MAX_HZ) + " 因为您用的是非官方的充电器。");
             break;
         default:
             if (!this->warningLabel->isHidden())
