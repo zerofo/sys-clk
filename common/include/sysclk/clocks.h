@@ -74,11 +74,11 @@ static inline const char* sysclkFormatModule(SysClkModule module, bool pretty)
     switch(module)
     {
         case SysClkModule_CPU:
-            return pretty ? "CPU" : "中央处理器";
+            return pretty ? "CPU" : "cpu";
         case SysClkModule_GPU:
-            return pretty ? "GPU" : "图形处理器";
+            return pretty ? "GPU" : "gpu";
         case SysClkModule_MEM:
-            return pretty ? "内存" : "内存控制器";
+            return pretty ? "内存" : "mem";
         default:
             return NULL;
     }
@@ -89,11 +89,11 @@ static inline const char* sysclkFormatThermalSensor(SysClkThermalSensor thermSen
     switch(thermSensor)
     {
         case SysClkThermalSensor_SOC:
-            return pretty ? "芯片" : "芯片系统";
+            return pretty ? "芯片" : "soc";
         case SysClkThermalSensor_PCB:
-            return pretty ? "主板" : "印制电路板";
+            return pretty ? "主板" : "pcb";
         case SysClkThermalSensor_Skin:
-            return pretty ? "表面" : "机器表面";
+            return pretty ? "表面" : "skin";
         default:
             return NULL;
     }
