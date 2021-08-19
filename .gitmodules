@@ -4,3 +4,6 @@
 [submodule "manager/lib/borealis"]
 	path = manager/lib/borealis
 	url = https://github.com/zdm65477730/borealis.git
+[submodule "overlay/lib/libtesla"]
+	path = overlay/lib/libtesla
+	url = https://github.com/zdm65477730/libtesla.git
