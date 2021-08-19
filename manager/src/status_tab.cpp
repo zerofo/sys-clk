@@ -312,5 +312,5 @@ void StatusCell::setValueColor(NVGcolor color)
 
 void StatusCell::resetValueColor()
 {
-    this->valueColor = brls::Application::getThemeValues()->textColor;
+    this->valueColor = brls::Application::getTheme()->textColor;
 }
