@@ -16,7 +16,7 @@
 
 void MainGui::listUI()
 {
-    this->enabledToggle = new tsl::elm::ToggleListItem("Enable", false);
+    this->enabledToggle = new tsl::elm::ToggleListItem("启用", false);
     enabledToggle->setStateChangedListener([this](bool state) {
         Result rc = sysclkIpcSetEnabled(state);
         if(R_FAILED(rc))
@@ -29,7 +29,7 @@ void MainGui::listUI()
     });
     this->listElement->addItem(this->enabledToggle);
 
-    tsl::elm::ListItem* appProfileItem = new tsl::elm::ListItem("Edit app profile");
+    tsl::elm::ListItem* appProfileItem = new tsl::elm::ListItem("编辑配置文件");
     appProfileItem->setClickListener([this](u64 keys) {
         if((keys & HidNpadButton_A) == HidNpadButton_A && this->context)
         {
@@ -41,9 +41,9 @@ void MainGui::listUI()
     });
     this->listElement->addItem(appProfileItem);
 
-    this->listElement->addItem(new tsl::elm::CategoryHeader("Advanced"));
+    this->listElement->addItem(new tsl::elm::CategoryHeader("高级配置"));
 
-    tsl::elm::ListItem* globalOverrideItem = new tsl::elm::ListItem("Temporary overrides");
+    tsl::elm::ListItem* globalOverrideItem = new tsl::elm::ListItem("临时超频");
     globalOverrideItem->setClickListener([this](u64 keys) {
         if((keys & HidNpadButton_A) == HidNpadButton_A)
         {
