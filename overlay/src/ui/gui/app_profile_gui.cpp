@@ -95,10 +95,10 @@ void AppProfileGui::update()
     if(this->context && this->applicationId != this->context->applicationId)
     {
         tsl::changeTo<FatalGui>(
-            "Application changed\n\n"
+            "应用程序已更改\n\n"
             "\n"
-            "The running application changed\n\n"
-            "while editing was going on.",
+            "正在运行的应用程序已更改\n\n"
+            "正在编辑的时候。",
             ""
         );
     }

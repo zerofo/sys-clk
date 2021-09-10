@@ -1,48 +1,51 @@
 # sys-clk
 
-Switch sysmodule allowing you to set cpu/gpu/mem clocks according to the running application and docked state.
+SWITCH系统模块，可让您根据正在运行的应用程序和底座连接状态来设置CPU，GPU以及内存时钟。
 
-## Installation
+## 安装
 
-The following instructions assumes you have a Nintendo Switch running Atmosphère, updated to at least the latest stable version.
-Copy the `atmosphere`, and `switch` folders at the root of your sdcard, overwriting files if prompted. Also copy the `config` folder if you're not updating, to include default settings.
+以下说明假定您具有运行Atmosphère或者sxos的Nintendo SWITCH，并且已至少更新为最新的稳定版本。
+复制 `atmosphere` 或者 `sxos` ，以及 `switch` 文件夹到SD卡根目录下，并在出现提示时覆盖文件。 如果不进行更新，还请复制 `config` 文件夹，以使用默认设置。
 
-**Note:** sys-clk-overlay requires to have [Tesla](https://gbatemp.net/threads/tesla-the-nintendo-switch-overlay-menu.557362/) installed and running
+**注意：** sys-clk-overlay需要具有 [Tesla](https://gbatemp.net/threads/tesla-the-nintendo-switch-overlay-menu.557362/) 安装并运行了。
 
-## Relevant files
+## 相关文件
 
-* Config file allows one to set custom clocks per docked state and title id, described below
+* 配置文件允许您为每个底座状态和Title ID设置自定义时钟，如下所述
 
 	`/config/sys-clk/config.ini`
 
-* Log file where the logs are written if enabled
+* 如果启用了写入日志文件，日志文件将存储在以下文件
 
 	`/config/sys-clk/log.txt`
 
-* Log flag file enables log writing if file exists
+* 如果以下文件存在，将启用写入日志文件功能
 
 	`/config/sys-clk/log.flag`
 
-* CSV file where the title id, profile, clocks and temperatures are written if enabled
+* 如果启用CSV上下文记录，Title ID、配置、时钟以及温度将存储在以下CSV文件
 
 	`/config/sys-clk/context.csv`
 
-* sys-clk manager app (accessible from the hbmenu)
+* sys-clk管理器前端应用程序 (可从hbmenu访问)
 
 	`/switch/sys-clk-manager.nro`
 
-* sys-clk overlay (accessible from anywhere by invoking the [Tesla menu](https://gbatemp.net/threads/tesla-the-nintendo-switch-overlay-menu.557362/))
+* sys-clk overlay (通过[Tesla menu](https://gbatemp.net/threads/tesla-the-nintendo-switch-overlay-menu.557362/)，可以从任何地方访问)
 
 	`/switch/.overlays/sys-clk-overlay.ovl`
 	
-* sys-clk core sysmodule
+* sys-clk核心系统模块
 
 	`/atmosphere/contents/00FF0000636C6BFF/exefs.nsp`
 	`/atmosphere/contents/00FF0000636C6BFF/flags/boot2.flag`
+	or
+	`/sxos/titles/00FF0000636C6BFF/exefs.nsp`
+	`/sxos/titles/00FF0000636C6BFF/flags/boot2.flag`
 
-## Config
+## 配置
 
-Presets can be customized by adding them to the ini config file located at `/config/sys-clk/config.ini`, using the following template for each app 
+可以通过将预设添加到位于 `/config/sys-clk/config.ini` 的ini配置文件中来自定义预设，为每个应用使用以下模板 
 
 ```
 [Application Title ID]
@@ -63,21 +66,21 @@ handheld_gpu=
 handheld_mem=
 ```
 
-* Replace `Application Title ID` with the title id of the game/application you're interested in customizing.
-A list of games title id can be found in the [Switchbrew wiki](https://switchbrew.org/wiki/Title_list/Games).
-* Frequencies are expressed in mhz, and will be scaled to the nearest possible values, described in the clock table below.
-* If any key is omitted, value is empty or set to 0, it will be ignored, and stock clocks will apply.
-* If charging, sys-clk will look for the frequencies in that order, picking the first found 
-	1. Charger specific config (USB or Official) `handheld_charging_usb_X` or `handheld_charging_official_X`
-	2. Non specific charging config `handheld_charging_X`
-	3. Handheld config `handheld_X`
+* 将 `Application Title ID` 替换为您要自定义的游戏或应用程序的Title ID。
+可以在 [Switchbrew wiki](https://switchbrew.org/wiki/Title_list/Games)中找到游戏Title ID的列表。
+* 频率以MHz表示，并将调整到最接近的可能值，如下面的时钟表所述。
+* 如果省略任何键，则该值为空或设置为0，它将被忽略，并且将应用默认配置的时钟。
+* 如果正处于充电状态，sys-clk将按该顺序查找频率，并选择找到的第一个 
+	1. 充电器特定的配置 (USB或官方) `handheld_charging_usb_X` 或 `handheld_charging_official_X`
+	2. 非特定的充电配置 `handheld_charging_X`
+	3. 手持模式配置 `handheld_X`
 
-### Example 1: Zelda BOTW
+### 示例1: Zelda BOTW
 
-* Overclock CPU when docked or charging
-* Overclock MEM to docked clocks when handheld
+* 底座模式或者充电模式时，超频CPU
+* 底座模式或者手持模式时，超频内存
 
-Leads to a smoother framerate overall (ex: in the korok forest)
+使得整体帧率更平滑 (例如：在科鲁克森林)
 
 ```
 [01007EF00011E000]
@@ -86,9 +89,9 @@ handheld_charging_cpu=1224
 handheld_mem=1600
 ```
 
-### Example 2: Picross
+### 示例 2: Picross
 
-* Underclocks on handheld to save battery
+* 手持设备上的欠频以节省电池
 
 ```
 [0100BA0003EEA000]
@@ -97,64 +100,64 @@ handheld_gpu=153
 handheld_mem=800
 ```
 
-### Advanced
+### 高级配置
 
-The `[values]` section allows you to alter timings in sys-clk, you should not need to edit any of these unless you know what you are doing. Possible values are:
+`[values]` 部分允许您更改sys-clk中的时序，除非您知道自己在做什么，否则无需编辑其中的任何时序。 可能的值为：
 
-| Key                     | Desc                                                                          | Default |
-|:-----------------------:|-------------------------------------------------------------------------------|:-------:|
-|**temp_log_interval_ms** | Defines how often sys-clk log temperatures, in milliseconds (`0` to disable)  | 0 ms    |
-|**csv_write_interval_ms**| Defines how often sys-clk writes to the CSV, in milliseconds (`0` to disable) | 0 ms    |
-|**poll_interval_ms**     | Defines how fast sys-clk checks and applies profiles, in milliseconds         | 300 ms  |
+| Key                     | Desc                                                    | Default |
+|:-----------------------:|---------------------------------------------------------|:-------:|
+|**temp_log_interval_ms** | 定义sys-clk日志温度的频率，以毫秒为单位 (`0` 为禁用)       | 0 ms    |
+|**csv_write_interval_ms**| 定义sys-clk多久写入一次CSV，以毫秒为单位 (`0` 为禁用)      | 0 ms    |
+|**poll_interval_ms**     | 定义sys-clk检查和应用配置文件的速度，以毫秒为单位           | 300 ms  |
 
 
-## Capping
+## 限制
 
-To protect the battery from excessive strain, clocks requested from config may be capped before applying, depending on your current profile:
+为了保护电池免受过度的消耗，根据您当前的配置文件，在应用之前，可能会限制config请求的时钟：
 
-|       | Handheld | Charging (USB) | Charging (Official) | Docked |
-|:-----:|:--------:|:--------------:|:-------------------:|:------:|
-|**MEM**| -        | -              | -                   | -      |
-|**CPU**| -        | -              | -                   | -      |
-|**GPU**| 460      | 768            | -                   | -      |
+|       | 手持模式  | 充电模式 (USB) | 充电模式 (官方)       | 底座模式 |
+|:-----:|:--------:|:--------------:|:-------------------:|:--------:|
+|**MEM**| -        | -              | -                   | -        |
+|**CPU**| -        | -              | -                   | -        |
+|**GPU**| 768      | 921            | -                   | -        |
 
-## Clock table (MHz)
+## 时钟频率表 (MHz)
 
-### MEM clocks
-* 1600 → official docked, boost mode, max clock
-* 1331 → official handheld
+### 内存时钟
+* 1600 → 官方底座模式，升压模式，最大频率
+* 1331 → 官方手持模式
 * 1065
 * 800
 * 665
 
-### CPU clocks
-* 1785 → max clock, boost mode
+### CPU时钟
+* 1785 → 最大频率，升压模式
 * 1683
 * 1581
 * 1428
 * 1326
 * 1224 → sdev oc
 * 1122
-* 1020 → official docked & handheld
+* 1020 → 官方底座模式和手持模式
 * 918
 * 816
 * 714
 * 612
 
-### GPU clocks
-* 921 → max clock
+### GPU时钟
+* 921 → 最大频率
 * 844
-* 768 → official docked
+* 768 → 官方底座模式与手持模式最大频率
 * 691
 * 614
 * 537
-* 460 → max handheld
-* 384 → official handheld
-* 307 → official handheld
+* 460 → 原始手持模式最大频率
+* 384 → 官方手持模式
+* 307 → 官方手持模式
 * 230
 * 153
-* 76 → boost mode
+* 76 → 升压模式
 
-**Notes:**
-1. GPU overclock is capped at 460Mhz in handheld and capped at 768Mhz if charging, unless you're using the official charger.
-2. Clocks higher than 768MHz need the official charger is plugged in.
+**注意：**
+1. 手持模式下，GPU超频上限为768Mhz。充电模式下上限为921Mhz，无论您使用的是官方充电器还是第三方充电器。
+2. 高于768MHz的时钟需要插入充电器（官方或者第三方）。

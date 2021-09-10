@@ -32,10 +32,11 @@
 
 int main(int argc, char* argv[])
 {
+    brls::i18n::loadTranslations();
     // Init the app
     if (!brls::Application::init(APP_TITLE))
     {
-        brls::Logger::error("Unable to init Borealis application");
+        brls::Logger::error("无法初始化Borealis应用程序");
         return EXIT_FAILURE;
     }
 
@@ -46,7 +47,7 @@ int main(int argc, char* argv[])
 
     if (brls::Application::loadFont(LOGO_FONT_NAME, LOGO_FONT_PATH) < 0)
     {
-        brls::Logger::error("failed to load logo font");
+        brls::Logger::error("无法加载logo字体");
     }
 
     uint32_t apiVersion;
@@ -54,18 +55,18 @@ int main(int argc, char* argv[])
     // Check that sys-clk is running
     if (!sysclkIpcRunning())
     {
-        brls::Logger::error("sys-clk is not running");
-        brls::Application::crash("sys-clk does not seem to be running, please check that it is correctly installed and enabled.");
+        brls::Logger::error("sys-clk未运行");
+        brls::Application::crash("sys-clk似乎没有运行，请检查它是否正确安装和启用。");
     }
     // Initialize sys-clk IPC client
     else if (R_FAILED(sysclkIpcInitialize()) || R_FAILED(sysclkIpcGetAPIVersion(&apiVersion)))
     {
-        brls::Logger::error("Unable to initialize sys-clk IPC client");
-        brls::Application::crash("Could not connect to sys-clk, please check that it is correctly installed and enabled.");
+        brls::Logger::error("无法初始化sys-clk IPC客户端");
+        brls::Application::crash("无法连接到sys-clk，请检查它是否已正确安装和启用。");
     }
     else if (SYSCLK_IPC_API_VERSION != apiVersion) {
-        brls::Logger::error("sys-clk IPC API version mismatch (expected: %u; actual: %u)", SYSCLK_IPC_API_VERSION, apiVersion);
-        brls::Application::crash("The manager is not compatible with the currently running sysmodule of sys-clk, please check that you have correctly installed the latest version (reboot?).");
+        brls::Logger::error("sys-clk IPC API版本不匹配（期望：%u；实际：%u)", SYSCLK_IPC_API_VERSION, apiVersion);
+        brls::Application::crash("管理器与当前运行的sys-clk系统模块不兼容，请检查是否已正确安装最新版本（重新启动？）。");
     }
     else
     {
@@ -78,7 +79,7 @@ int main(int argc, char* argv[])
         }
         else
         {
-            brls::Logger::error("Unable to get sys-clk version string");
+            brls::Logger::error("无法获取sys-clk版本字符串");
             brls::Application::setCommonFooter("[unknown]");
         }
 

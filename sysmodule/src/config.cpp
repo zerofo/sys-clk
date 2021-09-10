@@ -56,11 +56,11 @@ void Config::Load()
     this->mtime = this->CheckModificationTime();
     if(!this->mtime)
     {
-        FileUtils::LogLine("[cfg] Error finding file");
+        FileUtils::LogLine("[cfg] 查找文件时出错");
     }
     else if (!ini_browse(&BrowseIniFunc, this, this->path.c_str()))
     {
-        FileUtils::LogLine("[cfg] Error loading file");
+        FileUtils::LogLine("[cfg] 加载文件时出错");
     }
 
     this->loaded = true;
@@ -156,7 +156,7 @@ std::uint32_t Config::GetAutoClockHz(std::uint64_t tid, SysClkModule module, Sys
         case SysClkProfile_Docked:
             return FindClockHzFromProfiles(tid, module, {SysClkProfile_Docked});
         default:
-            ERROR_THROW("Unhandled SysClkProfile: %u", profile);
+            ERROR_THROW("未处理的SysClkProfile: %u", profile);
     }
 
     return 0;
@@ -283,14 +283,14 @@ int Config::BrowseIniFunc(const char* section, const char* key, const char* valu
                 if(!sysclkValidConfigValue((SysClkConfigValue)kval, input))
                 {
                     input = sysclkDefaultConfigValue((SysClkConfigValue)kval);
-                    FileUtils::LogLine("[cfg] Invalid value for key '%s' in section '%s': using default %d", key, section, input);
+                    FileUtils::LogLine("[cfg] 在节 '%s' 中键 '%s' 的值非法：使用默认值 %d", section, key, input);
                 }
                 config->configValues[kval] = input;
                 return 1;
             }
         }
 
-        FileUtils::LogLine("[cfg] Skipping key '%s' in section '%s': Unrecognized config value", key, section);
+        FileUtils::LogLine("[cfg] 略过在节 '%s' 中键 '%s' ：无法识别的配置值", section, key);
         return 1;
     }
 
@@ -298,7 +298,7 @@ int Config::BrowseIniFunc(const char* section, const char* key, const char* valu
 
     if(!tid || strlen(section) != 16)
     {
-        FileUtils::LogLine("[cfg] Skipping key '%s' in section '%s': Invalid TitleID", key, section);
+        FileUtils::LogLine("[cfg] 略过在节 '%s' 中键 '%s' ：非法TitleID", section, key);
         return 1;
     }
 
@@ -329,14 +329,14 @@ int Config::BrowseIniFunc(const char* section, const char* key, const char* valu
 
     if(parsedModule == SysClkModule_EnumMax || parsedProfile == SysClkProfile_EnumMax)
     {
-        FileUtils::LogLine("[cfg] Skipping key '%s' in section '%s': Unrecognized key", key, section);
+        FileUtils::LogLine("[cfg]  略过在节 '%s' 中键 '%s' ：无法识别的键", section, key);
         return 1;
     }
 
     std::uint32_t mhz = strtoul(value, NULL, 10);
     if(!mhz)
     {
-        FileUtils::LogLine("[cfg] Skipping key '%s' in section '%s': Invalid value", key, section);
+        FileUtils::LogLine("[cfg]  略过在节 '%s' 中键 '%s' ：非法值", section, key);
         return 1;
     }
 
@@ -369,7 +369,7 @@ void Config::SetOverrideHz(SysClkModule module, std::uint32_t hz)
     std::scoped_lock lock{this->overrideMutex};
     if(!SYSCLK_ENUM_VALID(SysClkModule, module))
     {
-        ERROR_THROW("Unhandled SysClkModule: %u", module);
+        ERROR_THROW("未处理的SysClkModule: %u", module);
     }
     this->overrideFreqs[module] = hz;
 }
@@ -379,7 +379,7 @@ std::uint32_t Config::GetOverrideHz(SysClkModule module)
     std::scoped_lock lock{this->overrideMutex};
     if(!SYSCLK_ENUM_VALID(SysClkModule, module))
     {
-        ERROR_THROW("Unhandled SysClkModule: %u", module);
+        ERROR_THROW("未处理的SysClkModule: %u", module);
     }
 
     return this->overrideFreqs[module];
@@ -390,7 +390,7 @@ std::uint64_t Config::GetConfigValue(SysClkConfigValue kval)
     std::scoped_lock lock{this->configMutex};
     if(!SYSCLK_ENUM_VALID(SysClkConfigValue, kval))
     {
-        ERROR_THROW("Unhandled SysClkConfigValue: %u", kval);
+        ERROR_THROW("未处理的SysClkConfigValue: %u", kval);
     }
 
     return this->configValues[kval];
@@ -402,7 +402,7 @@ const char* Config::GetConfigValueName(SysClkConfigValue kval, bool pretty)
 
     if(!result)
     {
-        ERROR_THROW("No such SysClkConfigValue: %u", kval);
+        ERROR_THROW("没有该SysClkConfigValue: %u", kval);
     }
 
     return result;

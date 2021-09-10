@@ -87,7 +87,7 @@ int main(int argc, char **argv)
 
         ProcessManagement::WaitForQLaunch();
         ClockManager::Initialize();
-        FileUtils::LogLine("Ready");
+        FileUtils::LogLine("就绪");
 
         ClockManager *clockMgr = ClockManager::GetInstance();
         IpcService *ipcSrv = new IpcService();
@@ -117,7 +117,7 @@ int main(int argc, char **argv)
         FileUtils::LogLine("[!?] %s", p ? p.__cxa_exception_type()->name() : "...");
     }
 
-    FileUtils::LogLine("Exit");
+    FileUtils::LogLine("退出");
     svcSleepThread(1000000ULL);
     FileUtils::Exit();
     return 0;

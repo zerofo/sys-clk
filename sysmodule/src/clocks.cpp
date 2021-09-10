@@ -27,7 +27,7 @@ void Clocks::GetList(SysClkModule module, std::uint32_t **outClocks)
             break;
         default:
             *outClocks = NULL;
-            ERROR_THROW("No such PcvModule: %u", module);
+            ERROR_THROW("没有该PcvModule: %u", module);
     }
 }
 
@@ -89,7 +89,7 @@ const char* Clocks::GetModuleName(SysClkModule module, bool pretty)
 
     if(!result)
     {
-        ERROR_THROW("No such SysClkModule: %u", module);
+        ERROR_THROW("没有该SysClkModule: %u", module);
     }
 
     return result;
@@ -101,7 +101,7 @@ const char* Clocks::GetProfileName(SysClkProfile profile, bool pretty)
 
     if(!result)
     {
-        ERROR_THROW("No such SysClkProfile: %u", profile);
+        ERROR_THROW("没有该SysClkProfile: %u", profile);
     }
 
     return result;
@@ -113,7 +113,7 @@ const char* Clocks::GetThermalSensorName(SysClkThermalSensor sensor, bool pretty
 
     if(!result)
     {
-        ERROR_THROW("No such SysClkThermalSensor: %u", sensor);
+        ERROR_THROW("没有该SysClkThermalSensor: %u", sensor);
     }
 
     return result;
@@ -130,7 +130,7 @@ PcvModule Clocks::GetPcvModule(SysClkModule sysclkModule)
         case SysClkModule_MEM:
             return PcvModule_EMC;
         default:
-            ERROR_THROW("No such SysClkModule: %u", sysclkModule);
+            ERROR_THROW("没有该SysClkModule: %u", sysclkModule);
     }
 
     return (PcvModule)0;
@@ -166,7 +166,7 @@ void Clocks::ResetToStock()
 
         if(!apmConfiguration)
         {
-            ERROR_THROW("Unknown apm configuration: %x", confId);
+            ERROR_THROW("未知的apm配置： %x", confId);
         }
 
         Clocks::SetHz(SysClkModule_CPU, apmConfiguration->cpu_hz);
@@ -298,7 +298,7 @@ std::uint32_t Clocks::GetNearestHz(SysClkModule module, std::uint32_t inHz)
 
     if (!clockTable || !clockTable[0])
     {
-        ERROR_THROW("table lookup failed for SysClkModule: %u", module);
+        ERROR_THROW("SysClkModule的表查找失败：%u", module);
     }
 
     int i = 0;
@@ -339,7 +339,7 @@ std::uint32_t Clocks::GetTemperatureMilli(SysClkThermalSensor sensor)
     }
     else
     {
-        ERROR_THROW("No such SysClkThermalSensor: %u", sensor);
+        ERROR_THROW("没有该SysClkThermalSensor: %u", sensor);
     }
 
     return std::max(0, millis);

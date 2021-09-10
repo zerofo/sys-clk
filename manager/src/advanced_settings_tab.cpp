@@ -32,19 +32,19 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
     if (R_FAILED(rc))
     {
-        brls::Logger::error("Unable to get context");
+        brls::Logger::error("无法获取上下文");
         errorResult("sysclkIpcGetCurrentContext", rc);
-        brls::Application::crash("Could not get the current sys-clk context, please check that it is correctly installed and enabled.");
+        brls::Application::crash("无法获取当前sys-clk上下文，请检查它是否已正确安装和启用。");
         return;
     }
 
     // Create UI
 
     // Disclaimer
-    this->addView(new brls::Label(brls::LabelStyle::REGULAR, "\uE140  Please only alter these settings if you know what you are doing.", true));
+    this->addView(new brls::Label(brls::LabelStyle::REGULAR, "\uE140  如果你知道你在做什么，请只更改这些设置。", true));
 
     // Temporary overrides
-    this->addView(new brls::Header("Temporary overrides"));
+    this->addView(new brls::Header("临时配置"));
 
     // CPU
     brls::SelectListItem *cpuFreqListItem = createFreqListItem(SysClkModule_CPU, context.overrideFreqs[SysClkModule_CPU] / 1000000);
@@ -55,7 +55,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
         if (R_FAILED(rc))
         {
-            brls::Logger::error("Unable to update CPU Override");
+            brls::Logger::error("无法更新CPU频率");
             errorResult(result == 0 ? "sysclkIpcRemoveOverride" : "sysclkIpcSetOverride",  rc);
             // TODO: Reset selected value
         }
@@ -70,7 +70,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
         if (R_FAILED(rc))
         {
-            brls::Logger::error("Unable to update GPU Override");
+            brls::Logger::error("无法更新GPU频率");
             errorResult(result == 0 ? "sysclkIpcRemoveOverride" : "sysclkIpcSetOverride",  rc);
             // TODO: Reset selected value
         }
@@ -86,7 +86,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
         if (R_FAILED(rc))
         {
-            brls::Logger::error("Unable to update MEM Override");
+            brls::Logger::error("无法更新内存频率");
             errorResult(result == 0 ? "sysclkIpcRemoveOverride" : "sysclkIpcSetOverride",  rc);
             // TODO: Reset selected value
         }
@@ -97,7 +97,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
     this->addView(memFreqListItem);
 
     // Config
-    this->addView(new brls::Header("Configuration"));
+    this->addView(new brls::Header("配置"));
 
     // Logging
     // TODO: add a logger view and put the button to enter it here
@@ -128,7 +128,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
                 // Validate the value
                 if (value < 0)
                 {
-                    brls::Application::notify("\uE5CD Couldn't save configuration: invalid value (is negative)");
+                    brls::Application::notify("\uE5CD 无法保存配置：无效值（负数）");
                     configItem->setValue(std::to_string(this->configValues.values[config]));
                     return;
                 }
@@ -137,7 +137,7 @@ AdvancedSettingsTab::AdvancedSettingsTab()
 
                 if (!sysclkValidConfigValue(config, uvalue))
                 {
-                    brls::Application::notify("\uE5CD Couldn't save configuration: invalid value");
+                    brls::Application::notify("\uE5CD 无法保存配置：无效值");
                     configItem->setValue(std::to_string(this->configValues.values[config]));
                     return;
                 }
@@ -146,11 +146,11 @@ AdvancedSettingsTab::AdvancedSettingsTab()
                 this->configValues.values[config] = uvalue;
                 sysclkIpcSetConfigValues(&this->configValues);
 
-                brls::Application::notify("\uE14B Configuration saved");
+                brls::Application::notify("\uE14B 配置保存了");
             }
             catch(const std::exception& e)
             {
-                brls::Logger::error("Unable to parse config value %s: %s", configItem->getValue().c_str(), e.what());
+                brls::Logger::error("无法解析配置值 %s: %s", configItem->getValue().c_str(), e.what());
             }
         });
 
@@ -163,11 +163,11 @@ std::string AdvancedSettingsTab::getDescriptionForConfig(SysClkConfigValue confi
     switch (config)
     {
         case SysClkConfigValue_CsvWriteIntervalMs:
-            return "How often to update /config/sys-clk/context.csv (in milliseconds)\n\uE016  Use 0 to disable";
+            return "多久更新一次 /config/sys-clk/content.csv（毫秒）\n\uE016  设置0以禁用";
         case SysClkConfigValue_TempLogIntervalMs:
-            return "How often to log temperatures (in milliseconds)\n\uE016  Use 0 to disable";
+            return "多久记录一次温度（毫秒）\n\uE016  设置0以禁用";
         case SysClkConfigValue_PollingIntervalMs:
-            return "How fast to check and apply profiles (in milliseconds)";
+            return "多久检查和应用一次配置文件（毫秒）";
         default:
             return "";
     }

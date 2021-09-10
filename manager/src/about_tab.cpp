@@ -33,7 +33,7 @@ AboutTab::AboutTab()
     // Subtitle
     brls::Label *subTitle = new brls::Label(
         brls::LabelStyle::REGULAR,
-        "Nintendo Switch overclocking / underclocking system module and frontend app by the RetroNX Team", 
+        "任天堂SWITCH超频、降频系统模块和前端应用程序由RetroNX团队制作", 
         true
     );
     subTitle->setHorizontalAlign(NVG_ALIGN_CENTER);
@@ -42,8 +42,8 @@ AboutTab::AboutTab()
     // Copyright
     brls::Label *copyright = new brls::Label(
         brls::LabelStyle::DESCRIPTION,
-        "System module licensed under the Beerware license\n" \
-        "Frontend app licensed under GPL-3.0\n" \
+        "根据beerware许可证许可的系统模块\n" \
+        "根据GPL-3.0许可的前端应用程序\n" \
         "\u00A9 2019 - 2020 natinusala, p-sam, m4xw",
         true
     );
@@ -51,12 +51,12 @@ AboutTab::AboutTab()
     this->addView(copyright);
 
     // Links
-    this->addView(new brls::Header("Links and Resources"));
+    this->addView(new brls::Header("链接和资源"));
     brls::Label *links = new brls::Label(
         brls::LabelStyle::SMALL,
-        "\uE016  User guide and code source can be found on our GitHub repository\n" \
-        "\uE016  The sys-clk manager is powered by Borealis, an hardware accelerated UI library\n" \
-        "\uE016  Join the RetroNX Discord server for support, to request features or just hang out!",
+        "\uE016  用户指南和代码源代码可以在我们的GitHub存储库中找到\n" \
+        "\uE016  sys-clk管理器由Borealis提供支持，Borealis是一个硬件加速的UI库\n" \
+        "\uE016  加入RetroNX Discord服务器以获得支持、请求功能或只是闲逛！",
         true
     );
     this->addView(links);

@@ -12,7 +12,7 @@
 
 #include <cstdio>
 
-#define FREQ_DEFAULT_TEXT "Do not override"
+#define FREQ_DEFAULT_TEXT "无更改"
 
 static inline std::string formatListFreqMhz(std::uint32_t mhz)
 {

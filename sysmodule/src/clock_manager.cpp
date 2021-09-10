@@ -90,7 +90,7 @@ void ClockManager::Tick()
 
                 if (hz != this->context->freqs[module] && this->context->enabled)
                 {
-                    FileUtils::LogLine("[mgr] %s clock set : %u.%u Mhz", Clocks::GetModuleName((SysClkModule)module, true), hz/1000000, hz/100000 - hz/1000000*10);
+                    FileUtils::LogLine("[mgr] %s 时钟设置： %u.%u Mhz", Clocks::GetModuleName((SysClkModule)module, true), hz/1000000, hz/100000 - hz/1000000*10);
                     Clocks::SetHz((SysClkModule)module, hz);
                     this->context->freqs[module] = hz;
                 }
@@ -112,14 +112,14 @@ bool ClockManager::RefreshContext()
     if(enabled != this->context->enabled)
     {
         this->context->enabled = enabled;
-        FileUtils::LogLine("[mgr] " TARGET " status: %s", enabled ? "enabled" : "disabled");
+        FileUtils::LogLine("[mgr] " TARGET " 状态： %s", enabled ? "开启" : "关闭");
         hasChanged = true;
     }
 
     std::uint64_t applicationId = ProcessManagement::GetCurrentApplicationId();
     if (applicationId != this->context->applicationId)
     {
-        FileUtils::LogLine("[mgr] TitleID change: %016lX", applicationId);
+        FileUtils::LogLine("[mgr] TitleID 更改： %016lX", applicationId);
         this->context->applicationId = applicationId;
         hasChanged = true;
     }
@@ -127,7 +127,7 @@ bool ClockManager::RefreshContext()
     SysClkProfile profile = Clocks::GetCurrentProfile();
     if (profile != this->context->profile)
     {
-        FileUtils::LogLine("[mgr] Profile change: %s", Clocks::GetProfileName(profile, true));
+        FileUtils::LogLine("[mgr] 应用程序配置文件更改： %s", Clocks::GetProfileName(profile, true));
         this->context->profile = profile;
         hasChanged = true;
     }
@@ -144,7 +144,7 @@ bool ClockManager::RefreshContext()
         hz = Clocks::GetCurrentHz((SysClkModule)module);
         if (hz != 0 && hz != this->context->freqs[module])
         {
-            FileUtils::LogLine("[mgr] %s clock change: %u.%u Mhz", Clocks::GetModuleName((SysClkModule)module, true), hz/1000000, hz/100000 - hz/1000000*10);
+            FileUtils::LogLine("[mgr] %s 时钟更改： %u.%u Mhz", Clocks::GetModuleName((SysClkModule)module, true), hz/1000000, hz/100000 - hz/1000000*10);
             this->context->freqs[module] = hz;
             hasChanged = true;
         }
@@ -154,11 +154,11 @@ bool ClockManager::RefreshContext()
         {
             if(hz)
             {
-                FileUtils::LogLine("[mgr] %s override change: %u.%u Mhz", Clocks::GetModuleName((SysClkModule)module, true), hz/1000000, hz/100000 - hz/1000000*10);
+                FileUtils::LogLine("[mgr] %s 超频更改： %u.%u Mhz", Clocks::GetModuleName((SysClkModule)module, true), hz/1000000, hz/100000 - hz/1000000*10);
             }
             else
             {
-                FileUtils::LogLine("[mgr] %s override disabled", Clocks::GetModuleName((SysClkModule)module, true));
+                FileUtils::LogLine("[mgr] %s 超频关闭", Clocks::GetModuleName((SysClkModule)module, true));
             }
             this->context->overrideFreqs[module] = hz;
             hasChanged = true;
@@ -175,7 +175,7 @@ bool ClockManager::RefreshContext()
         millis = Clocks::GetTemperatureMilli((SysClkThermalSensor)sensor);
         if(shouldLogTemp)
         {
-            FileUtils::LogLine("[mgr] %s temp: %u.%u °C", Clocks::GetThermalSensorName((SysClkThermalSensor)sensor, true), millis/1000, (millis - millis/1000*1000) / 100);
+            FileUtils::LogLine("[mgr] %s 温度： %u.%u °C", Clocks::GetThermalSensorName((SysClkThermalSensor)sensor, true), millis/1000, (millis - millis/1000*1000) / 100);
         }
         this->context->temps[sensor] = millis;
     }
