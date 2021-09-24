@@ -27,6 +27,7 @@ jobs:
           uses: actions-hub/docker/cli@master
           env:
               SKIP_LOGIN: true
+              
         - run: docker run -t --rm --name builder -v `pwd`:`pwd` -w `pwd` zerofo/ns_dev:0.4 bash build.sh
 
         - name: Upload file
