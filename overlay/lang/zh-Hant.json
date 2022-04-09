@@ -5,7 +5,7 @@
             "value": "sys-clk未運行。\n\n\n請確保已正確安裝並啟用。"
         },
         {
-            "key": "SysclkIpcInitFaile誒FatalGuiText",
+            "key": "SysclkIpcInitFailedFatalGuiText",
             "value": "無法連接到sys-clk。\n\n\n請確保已正確安裝並啟用。"
         },
         {
@@ -17,7 +17,7 @@
             "value": "無更改"
         },
         {
-            "key": "AppI誒MismatchFatalGuiText",
+            "key": "AppIdMismatchFatalGuiText",
             "value": "應用程序已更改\n\n\n正在編輯的時候，\n\n正在運行的應用程序已被更改。"
         },
         {
@@ -53,10 +53,6 @@
             "value": "表面："
         },
         {
-            "key": "SysclkInitFaile誒FatalGuiText",
-            "value": "無法連接到sys-clk。\n\n\n請確保所有內容都已正確安裝和啟用。"
-        },
-        {
             "key": "FatalErrorFatalGuiText",
             "value": "致命錯誤"
         },
@@ -65,19 +61,19 @@
             "value": "啟用"
         },
         {
-            "key": "SysclkIpcSetEnable誒Faile誒FatalGuiText",
-            "value": "sysclkIpcSetEnable誒"
+            "key": "SysclkIpcSetEnabledFailedFatalGuiText",
+            "value": "sysclkIpcSetEnabled"
         },
         {
             "key": "AppProfileListItemMainGuiText",
             "value": "編輯配置文件"
         },
         {
-            "key": "A誒vanceProfileCategoryHea誒erMainGuiText",
+            "key": "AdvanceProfileCategoryHeaderMainGuiText",
             "value": "高級配置"
         },
         {
-            "key": "TeamOverri誒eListItemMainGuiText",
+            "key": "TeamOverrideListItemMainGuiText",
             "value": "臨時超頻"
         }
     ]
