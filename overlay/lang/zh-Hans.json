@@ -1,0 +1,80 @@
+{
+    "strings": [
+        {
+            "key": "SysclkIpcNotRunningFatalGuiText",
+            "value": "sys-clk未运行。\n\n\n请确保已正确安装并启用。"
+        },
+        {
+            "key": "SysclkIpcInitFailedFatalGuiText",
+            "value": "无法连接到sys-clk。\n\n\n请确保已正确安装并启用。"
+        },
+        {
+            "key": "SysclkIpcVersionMismatchFatalGuiText",
+            "value": "Overlay与正在运行的sys-clk版本不兼容。\n\n\n请确保所有的东西都已安装并且是最新的。"
+        },
+        {
+            "key": "DefaultFreqFarmatListText",
+            "value": "无更改"
+        },
+        {
+            "key": "AppIdMismatchFatalGuiText",
+            "value": "应用程序已更改\n\n\n正在编辑的时候，\n\n正在运行的应用程序已被更改。"
+        },
+        {
+            "key": "AppIDBaseMenuGuiText",
+            "value": "程序ID："
+        },
+        {
+            "key": "ProfileBaseMenuGuiText",
+            "value": "配置："
+        },
+        {
+            "key": "CPUBaseMenuGuiText",
+            "value": "CPU："
+        },
+        {
+            "key": "GPUBaseMenuGuiText",
+            "value": "GPU："
+        },
+        {
+            "key": "MemBaseMenuGuiText",
+            "value": "内存："
+        },
+        {
+            "key": "ChipBaseMenuGuiText",
+            "value": "芯片："
+        },
+        {
+            "key": "PCBBaseMenuGuiText",
+            "value": "主板："
+        },
+        {
+            "key": "SkinBaseMenuGuiText",
+            "value": "表面："
+        },
+        {
+            "key": "FatalErrorFatalGuiText",
+            "value": "致命错误"
+        },
+        {
+            "key": "ToggleListItemMainGuiText",
+            "value": "启用"
+        },
+        {
+            "key": "SysclkIpcSetEnabledFailedFatalGuiText",
+            "value": "sysclkIpcSetEnabled"
+        },
+        {
+            "key": "AppProfileListItemMainGuiText",
+            "value": "编辑配置文件"
+        },
+        {
+            "key": "AdvanceProfileCategoryHeaderMainGuiText",
+            "value": "高级配置"
+        },
+        {
+            "key": "TeamOverrideListItemMainGuiText",
+            "value": "临时超频"
+        }
+    ]
+}

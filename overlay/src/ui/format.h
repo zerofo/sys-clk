@@ -11,8 +11,10 @@
 #pragma once
 
 #include <cstdio>
+#include <tesla.hpp>
+using namespace tsl;
 
-#define FREQ_DEFAULT_TEXT "无更改"
+#define FREQ_DEFAULT_TEXT "DefaultFreqFarmatListText"_tr
 
 static inline std::string formatListFreqMhz(std::uint32_t mhz)
 {

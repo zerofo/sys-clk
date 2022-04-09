@@ -14,11 +14,18 @@
 #include "ui/gui/fatal_gui.h"
 #include "ui/gui/main_gui.h"
 
+using namespace tsl;
+
 class AppOverlay : public tsl::Overlay
 {
     public:
         AppOverlay() {}
         ~AppOverlay() {}
+
+        virtual void initServices() override {
+            std::string lanPath = std::string("sdmc:/switch/.overlays/lang/") + APPTITLE + "/";
+            tsl::tr::InitTrans(lanPath);
+        }
 
         virtual void exitServices() override {
             sysclkIpcExit();
@@ -34,9 +41,7 @@ class AppOverlay : public tsl::Overlay
             if(!sysclkIpcRunning())
             {
                 return initially<FatalGui>(
-                    "sys-clk未运行。\n\n"
-                    "\n"
-                    "请确保已正确安装并启用。",
+                    "SysclkIpcNotRunningFatalGuiText"_tr,
                     ""
                 );
             }
@@ -44,9 +49,7 @@ class AppOverlay : public tsl::Overlay
             if(R_FAILED(sysclkIpcInitialize()) || R_FAILED(sysclkIpcGetAPIVersion(&apiVersion)))
             {
                 return initially<FatalGui>(
-                    "无法连接到sys-clk.\n\n"
-                    "\n"
-                    "请确保已正确安装并启用。",
+                    "SysclkIpcInitFailedFatalGuiText"_tr,
                     ""
                 );
             }
@@ -54,9 +57,7 @@ class AppOverlay : public tsl::Overlay
             if(SYSCLK_IPC_API_VERSION != apiVersion)
             {
                 return initially<FatalGui>(
-                    "Overlay与正在运行的sys-clk版本不兼容。\n\n"
-                    "\n"
-                    "请确保所有的东西都已安装并且是最新的。",
+                    "SysclkIpcVersionMismatchFatalGuiText"_tr,
                     ""
                 );
             }

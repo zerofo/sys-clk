@@ -12,6 +12,7 @@
 
 #include "../format.h"
 #include "fatal_gui.h"
+using namespace tsl;
 
 AppProfileGui::AppProfileGui(std::uint64_t applicationId, SysClkTitleProfileList* profileList)
 {
@@ -95,10 +96,7 @@ void AppProfileGui::update()
     if(this->context && this->applicationId != this->context->applicationId)
     {
         tsl::changeTo<FatalGui>(
-            "应用程序已更改\n\n"
-            "\n"
-            "正在运行的应用程序已更改\n\n"
-            "正在编辑的时候。",
+            "AppIdMismatchFatalGuiText"_tr,
             ""
         );
     }

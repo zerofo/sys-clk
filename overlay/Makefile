@@ -38,7 +38,7 @@ APP_VERSION		:= $(TARGET_VERSION)
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-DEFINES	:=	-DDISABLE_IPC -DTARGET="\"$(TARGET)\"" -DTARGET_VERSION="\"$(TARGET_VERSION)\""
+DEFINES	:=	-DDISABLE_IPC -DTARGET="\"$(TARGET)\"" -DAPPTITLE=\"$(APP_TITLE)\" -DTARGET_VERSION="\"$(TARGET_VERSION)\""
 
 ARCH	:=	-march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -fPIE
 
@@ -47,7 +47,7 @@ CFLAGS	:=	-g -Wall -O2 -ffunction-sections \
 
 CFLAGS	+=	$(INCLUDE) -D__SWITCH__
 
-CXXFLAGS	:= $(CFLAGS) -fno-exceptions -std=gnu++17
+CXXFLAGS	:= $(CFLAGS) -fexceptions -std=gnu++20
 
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)

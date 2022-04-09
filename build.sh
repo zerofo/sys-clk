@@ -32,8 +32,8 @@ pushd "$ROOT_DIR/manager"
 make -j$CORES
 popd > /dev/null
 
-mkdir -p "$DIST_DIR/switch"
-cp -vf "$ROOT_DIR/manager/sys-clk-manager.nro" "$DIST_DIR/switch/sys-clk-manager.nro"
+mkdir -p "$DIST_DIR/switch/sys-clk"
+cp -vf "$ROOT_DIR/manager/sys-clk-manager.nro" "$DIST_DIR/switch/sys-clk/sys-clk-manager.nro"
 
 echo "*** overlay ***"
 pushd "$ROOT_DIR/overlay"
@@ -42,6 +42,8 @@ popd > /dev/null
 
 mkdir -p "$DIST_DIR/switch/.overlays"
 cp -vf "$ROOT_DIR/overlay/out/sys-clk-overlay.ovl" "$DIST_DIR/switch/.overlays/sys-clk-overlay.ovl"
+mkdir -p "$DIST_DIR/switch/.overlays/lang/sys-clk/"
+cp -rf "$ROOT_DIR"/overlay/lang/*.json "$DIST_DIR/switch/.overlays/lang/sys-clk/"
 
 echo "*** assets ***"
 mkdir -p "$DIST_DIR/config/sys-clk"

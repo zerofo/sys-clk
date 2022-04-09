@@ -13,10 +13,12 @@
 #include <list>
 
 #include "base_menu_gui.h"
+#include <tesla.hpp>
+using namespace tsl;
 
 using FreqChoiceListener = std::function<bool(std::uint32_t hz)>;
 
-#define FREQ_DEFAULT_TEXT "无更改"
+#define FREQ_DEFAULT_TEXT "DefaultFreqFarmatListText"_tr
 
 class FreqChoiceGui : public BaseMenuGui
 {
