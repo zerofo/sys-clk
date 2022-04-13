@@ -23,8 +23,96 @@ class AppOverlay : public tsl::Overlay
         ~AppOverlay() {}
 
         virtual void initServices() override {
-            std::string lanPath = std::string("sdmc:/switch/.overlays/lang/") + APPTITLE + "/";
-            tsl::tr::InitTrans(lanPath);
+            std::string jsonStr = R"(
+            {
+                "strings": [
+                    {
+                        "key": "PluginName",
+                        "value": "sys-clk"
+                    },
+                    {
+                        "key": "SysclkIpcNotRunningFatalGuiText",
+                        "value": "sys-clk is not running.\n\n\nMake sure sys-clk is installed and enabled correctly."
+                    },
+                    {
+                        "key": "SysclkIpcInitFailedFatalGuiText",
+                        "value": "Can't connect to sys-clk.\n\n\nMake sure sys-clk is installed and enabled correctly."
+                    },
+                    {
+                        "key": "SysclkIpcVersionMismatchFatalGuiText",
+                        "value": "Overlay is incompatible with the running sys-clk version.\n\n\nMake sure everything is installed and up to date."
+                    },
+                    {
+                        "key": "DefaultFreqFarmatListText",
+                        "value": "No change"
+                    },
+                    {
+                        "key": "AppIdMismatchFatalGuiText",
+                        "value": "Application changed while editing,\n\n\nthe running application has been changed."
+                    },
+                    {
+                        "key": "AppIDBaseMenuGuiText",
+                        "value": "App ID:"
+                    },
+                    {
+                        "key": "ProfileBaseMenuGuiText",
+                        "value": "Profile:"
+                    },
+                    {
+                        "key": "CPUBaseMenuGuiText",
+                        "value": "CPU:"
+                    },
+                    {
+                        "key": "GPUBaseMenuGuiText",
+                        "value": "GPU:"
+                    },
+                    {
+                        "key": "MemBaseMenuGuiText",
+                        "value": "MEM:"
+                    },
+                    {
+                        "key": "ChipBaseMenuGuiText",
+                        "value": "Chip:"
+                    },
+                    {
+                        "key": "PCBBaseMenuGuiText",
+                        "value": "PCB:"
+                    },
+                    {
+                        "key": "SkinBaseMenuGuiText",
+                        "value": "Skin:"
+                    },
+                    {
+                        "key": "FatalErrorFatalGuiText",
+                        "value": "Fatal error"
+                    },
+                    {
+                        "key": "ToggleListItemMainGuiText",
+                        "value": "Enabled"
+                    },
+                    {
+                        "key": "SysclkIpcSetEnabledFailedFatalGuiText",
+                        "value": "sysclkIpcSetEnabled"
+                    },
+                    {
+                        "key": "AppProfileListItemMainGuiText",
+                        "value": "Edit profile"
+                    },
+                    {
+                        "key": "AdvanceProfileCategoryHeaderMainGuiText",
+                        "value": "Advance profile"
+                    },
+                    {
+                        "key": "TeamOverrideListItemMainGuiText",
+                        "value": "Temp override"
+                    }
+                ]
+            }
+        )";
+        std::string lanPath = std::string("sdmc:/switch/.overlays/lang/") + APPTITLE + "/";
+        tsl::hlp::doWithSmSession([&lanPath, &jsonStr]{
+            tsl::tr::InitTrans(lanPath, jsonStr);
+        });
         }
 
         virtual void exitServices() override {

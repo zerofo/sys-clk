@@ -1,6 +1,10 @@
 {
     "strings": [
         {
+            "key": "PluginName",
+            "value": "sys-clk"
+        },
+        {
             "key": "SysclkIpcNotRunningFatalGuiText",
             "value": "sys-clk is not running.\n\n\nMake sure sys-clk is installed and enabled correctly."
         },

@@ -1,6 +1,10 @@
 {
     "strings": [
         {
+            "key": "PluginName",
+            "value": "系统超频"
+        },
+        {
             "key": "SysclkIpcNotRunningFatalGuiText",
             "value": "sys-clk未运行。\n\n\n请确保已正确安装并启用。"
         },
