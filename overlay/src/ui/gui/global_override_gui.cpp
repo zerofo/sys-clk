@@ -42,7 +42,7 @@ void GlobalOverrideGui::openFreqChoiceGui(SysClkModule module, std::uint32_t* hz
 void GlobalOverrideGui::addModuleListItem(SysClkModule module, std::uint32_t* hzList)
 {
     tsl::elm::ListItem* listItem = new tsl::elm::ListItem(sysclkFormatModule(module, true));
-    listItem->setValue(formatListFreqMhz(0));
+    listItem->setValue("DefaultFreqFarmatListText"_tr);
 
     listItem->setClickListener([this, module, hzList](u64 keys) {
         if((keys & HidNpadButton_A) == HidNpadButton_A)
@@ -75,7 +75,7 @@ void GlobalOverrideGui::refresh()
         {
             if(this->listItems[m] != nullptr && this->listHz[m] != this->context->overrideFreqs[m])
             {
-                this->listItems[m]->setValue(formatListFreqHz(this->context->overrideFreqs[m]));
+                this->listItems[m]->setValue((this->context->overrideFreqs[m] != 0 ) ? formatListFreqHz(this->context->overrideFreqs[m]) : "DefaultFreqFarmatListText"_tr);
                 this->listHz[m] = this->context->overrideFreqs[m];
             }
         }

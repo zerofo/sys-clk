@@ -18,7 +18,7 @@ static inline std::string formatListFreqMhz(std::uint32_t mhz)
 {
     if(mhz == 0)
     {
-        return "DefaultFreqFarmatListText"_tr;
+        return "";
     }
 
     char buf[10];
