@@ -14,13 +14,11 @@
 #include <tesla.hpp>
 using namespace tsl;
 
-#define FREQ_DEFAULT_TEXT "DefaultFreqFarmatListText"_tr
-
 static inline std::string formatListFreqMhz(std::uint32_t mhz)
 {
     if(mhz == 0)
     {
-        return FREQ_DEFAULT_TEXT;
+        return "DefaultFreqFarmatListText"_tr;
     }
 
     char buf[10];
