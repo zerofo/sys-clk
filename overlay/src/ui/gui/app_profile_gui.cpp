@@ -82,14 +82,19 @@ void AppProfileGui::addProfileUI(SysClkProfile profile)
     {
         case SysClkProfile_Docked:
             profileFormat = pretty ? "DockedPrettySysclkFormatProfileText"_tr : "DockedSysclkFormatProfileText"_tr;
+            break;
         case SysClkProfile_Handheld:
             profileFormat = pretty ? "HandheldPrettySysclkFormatProfileText"_tr : "HandheldSysclkFormatProfileText"_tr;
+            break;
         case SysClkProfile_HandheldCharging:
             profileFormat = pretty ? "HandheldChargingPrettySysclkFormatProfileText"_tr : "HandheldChargingSysclkFormatProfileText"_tr;
+            break;
         case SysClkProfile_HandheldChargingUSB:
             profileFormat = pretty ? "HandheldChargingUSBPrettySysclkFormatProfileText"_tr : "HandheldChargingUSBSysclkFormatProfileText"_tr;
+            break;
         case SysClkProfile_HandheldChargingOfficial:
             profileFormat = pretty ? "HandheldChargingOfficialPrettySysclkFormatProfileText"_tr : "HandheldChargingOfficialSysclkFormatProfileText"_tr;
+            break;
         default:
             break;
     }
