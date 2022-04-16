@@ -73,6 +73,94 @@
             "value": "Skin:"
         },
         {
+            "key": "CPUPrettySysclkFormatModuleText",
+            "value": "CPU"
+        },
+        {
+            "key": "CPUSysclkFormatModuleText",
+            "value": "cpu"
+        },
+        {
+            "key": "GPUPrettySysclkFormatModuleText",
+            "value": "GPU"
+        },
+        {
+            "key": "GPUSysclkFormatModuleText",
+            "value": "gpu"
+        },
+        {
+            "key": "MEMPrettySysclkFormatModuleText",
+            "value": "Memory"
+        },
+        {
+            "key": "MEMSysclkFormatModuleText",
+            "value": "mem"
+        },
+        {
+            "key": "SOCPrettySysclkFormatThermalSensorText",
+            "value": "SOC"
+        },
+        {
+            "key": "SOCSysclkFormatThermalSensorText",
+            "value": "soc"
+        },
+        {
+            "key": "PCBPrettySysclkFormatThermalSensorText",
+            "value": "PCB"
+        },
+        {
+            "key": "PCBSysclkFormatThermalSensorText",
+            "value": "pcb"
+        },
+        {
+            "key": "SkinPrettySysclkFormatThermalSensorText",
+            "value": "Skin"
+        },
+        {
+            "key": "SkinSysclkFormatThermalSensorText",
+            "value": "skin"
+        },
+        {
+            "key": "DockedPrettySysclkFormatProfileText",
+            "value": "Docked"
+        },
+        {
+            "key": "DockedSysclkFormatProfileText",
+            "value": "docked"
+        },
+        {
+            "key": "HandheldPrettySysclkFormatProfileText",
+            "value": "Handheld"
+        },
+        {
+            "key": "HandheldSysclkFormatProfileText",
+            "value": "handheld"
+        },
+        {
+            "key": "HandheldChargingPrettySysclkFormatProfileText",
+            "value": "Charging"
+        },
+        {
+            "key": "HandheldChargingSysclkFormatProfileText",
+            "value": "handheld_charging"
+        },
+        {
+            "key": "HandheldChargingUSBPrettySysclkFormatProfileText",
+            "value": "USB Charger"
+        },
+        {
+            "key": "HandheldChargingUSBSysclkFormatProfileText",
+            "value": "handheld_charging_usb"
+        },
+        {
+            "key": "HandheldChargingOfficialPrettySysclkFormatProfileText",
+            "value": "Official Charger"
+        },
+        {
+            "key": "HandheldChargingOfficialSysclkFormatProfileText",
+            "value": "handheld_charging_official"
+        },
+        {
             "key": "FatalErrorFatalGuiText",
             "value": "Fatal error"
         },

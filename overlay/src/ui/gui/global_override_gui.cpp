@@ -42,7 +42,23 @@ void GlobalOverrideGui::openFreqChoiceGui(SysClkModule module, std::uint32_t* hz
 
 void GlobalOverrideGui::addModuleListItem(SysClkModule module, std::uint32_t* hzList)
 {
-    tsl::elm::ListItem* listItem = new tsl::elm::ListItem(sysclkFormatModule(module, true));
+    std::string moduleFormat{" "};
+    bool pretty = true;
+    switch(module)
+    {
+        case SysClkModule_CPU:
+            moduleFormat = pretty ? "CPUPrettySysclkFormatModuleText"_tr : "CPUSysclkFormatModuleText"_tr;
+            break;
+        case SysClkModule_GPU:
+            moduleFormat = pretty ? "GPUPrettySysclkFormatModuleText"_tr : "GPUSysclkFormatModuleText"_tr;
+            break;
+        case SysClkModule_MEM:
+            moduleFormat = pretty ? "MEMPrettySysclkFormatModuleText"_tr : "MEMSysclkFormatModuleText"_tr;
+            break;
+        default:
+            break;
+    }
+    tsl::elm::ListItem* listItem = new tsl::elm::ListItem(moduleFormat);
     listItem->setValue(formatListFreqMhz(0));
 
     listItem->setClickListener([this, module, hzList](u64 keys) {

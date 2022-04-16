@@ -43,7 +43,23 @@ void AppProfileGui::openFreqChoiceGui(tsl::elm::ListItem* listItem, SysClkProfil
 
 void AppProfileGui::addModuleListItem(SysClkProfile profile, SysClkModule module, std::uint32_t* hzList)
 {
-    tsl::elm::ListItem* listItem = new tsl::elm::ListItem(sysclkFormatModule(module, true));
+    std::string moduleFormat{" "};
+    bool pretty = true;
+    switch(module)
+    {
+        case SysClkModule_CPU:
+            moduleFormat = pretty ? "CPUPrettySysclkFormatModuleText"_tr : "CPUSysclkFormatModuleText"_tr;
+            break;
+        case SysClkModule_GPU:
+            moduleFormat = pretty ? "GPUPrettySysclkFormatModuleText"_tr : "GPUSysclkFormatModuleText"_tr;
+            break;
+        case SysClkModule_MEM:
+            moduleFormat = pretty ? "MEMPrettySysclkFormatModuleText"_tr : "MEMSysclkFormatModuleText"_tr;
+            break;
+        default:
+            break;
+    }
+    tsl::elm::ListItem* listItem = new tsl::elm::ListItem(moduleFormat);
     listItem->setValue(formatListFreqMhz(this->profileList->mhzMap[profile][module]));
     listItem->setClickListener([this, listItem, profile, module, hzList](u64 keys) {
         if((keys & HidNpadButton_A) == HidNpadButton_A)
@@ -60,7 +76,24 @@ void AppProfileGui::addModuleListItem(SysClkProfile profile, SysClkModule module
 
 void AppProfileGui::addProfileUI(SysClkProfile profile)
 {
-    this->listElement->addItem(new tsl::elm::CategoryHeader(sysclkFormatProfile(profile, true)));
+    std::string profileFormat{" "};
+    bool pretty = true;
+    switch(profile)
+    {
+        case SysClkProfile_Docked:
+            profileFormat = pretty ? "DockedPrettySysclkFormatProfileText"_tr : "DockedSysclkFormatProfileText"_tr;
+        case SysClkProfile_Handheld:
+            profileFormat = pretty ? "HandheldPrettySysclkFormatProfileText"_tr : "HandheldSysclkFormatProfileText"_tr;
+        case SysClkProfile_HandheldCharging:
+            profileFormat = pretty ? "HandheldChargingPrettySysclkFormatProfileText"_tr : "HandheldChargingSysclkFormatProfileText"_tr;
+        case SysClkProfile_HandheldChargingUSB:
+            profileFormat = pretty ? "HandheldChargingUSBPrettySysclkFormatProfileText"_tr : "HandheldChargingUSBSysclkFormatProfileText"_tr;
+        case SysClkProfile_HandheldChargingOfficial:
+            profileFormat = pretty ? "HandheldChargingOfficialPrettySysclkFormatProfileText"_tr : "HandheldChargingOfficialSysclkFormatProfileText"_tr;
+        default:
+            break;
+    }
+    this->listElement->addItem(new tsl::elm::CategoryHeader(profileFormat));
     this->addModuleListItem(profile, SysClkModule_CPU, &sysclk_g_freq_table_cpu_hz[0]);
     this->addModuleListItem(profile, SysClkModule_GPU, &sysclk_g_freq_table_gpu_hz[0]);
     this->addModuleListItem(profile, SysClkModule_MEM, &sysclk_g_freq_table_mem_hz[0]);

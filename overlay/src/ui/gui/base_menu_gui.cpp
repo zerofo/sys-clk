@@ -11,7 +11,6 @@
 #include "base_menu_gui.h"
 
 #include "fatal_gui.h"
-
 using namespace tsl;
 
 BaseMenuGui::BaseMenuGui()
@@ -41,7 +40,25 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
         renderer->drawString(buf, false, 81, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
 
         renderer->drawString("ProfileBaseMenuGuiText"_tr.c_str(), false, 246, 90, SMALL_TEXT_SIZE, DESC_COLOR);
-        renderer->drawString(sysclkFormatProfile(context->profile, true), false, 302, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
+
+        std::string profileFormat{" "};
+        bool pretty = true;
+        switch(context->profile)
+        {
+            case SysClkProfile_Docked:
+                profileFormat = pretty ? "DockedPrettySysclkFormatProfileText"_tr : "DockedSysclkFormatProfileText"_tr;
+            case SysClkProfile_Handheld:
+                profileFormat = pretty ? "HandheldPrettySysclkFormatProfileText"_tr : "HandheldSysclkFormatProfileText"_tr;
+            case SysClkProfile_HandheldCharging:
+                profileFormat = pretty ? "HandheldChargingPrettySysclkFormatProfileText"_tr : "HandheldChargingSysclkFormatProfileText"_tr;
+            case SysClkProfile_HandheldChargingUSB:
+                profileFormat = pretty ? "HandheldChargingUSBPrettySysclkFormatProfileText"_tr : "HandheldChargingUSBSysclkFormatProfileText"_tr;
+            case SysClkProfile_HandheldChargingOfficial:
+                profileFormat = pretty ? "HandheldChargingOfficialPrettySysclkFormatProfileText"_tr : "HandheldChargingOfficialSysclkFormatProfileText"_tr;
+            default:
+                break;
+        }
+        renderer->drawString(profileFormat.c_str(), false, 302, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
 
         static struct
         {

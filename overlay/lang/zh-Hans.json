@@ -73,6 +73,94 @@
             "value": "表面："
         },
         {
+            "key": "CPUPrettySysclkFormatModuleText",
+            "value": "CPU"
+        },
+        {
+            "key": "CPUSysclkFormatModuleText",
+            "value": "cpu"
+        },
+        {
+            "key": "GPUPrettySysclkFormatModuleText",
+            "value": "GPU"
+        },
+        {
+            "key": "GPUSysclkFormatModuleText",
+            "value": "gpu"
+        },
+        {
+            "key": "MEMPrettySysclkFormatModuleText",
+            "value": "内存"
+        },
+        {
+            "key": "MEMSysclkFormatModuleText",
+            "value": "mem"
+        },
+        {
+            "key": "SOCPrettySysclkFormatThermalSensorText",
+            "value": "芯片"
+        },
+        {
+            "key": "SOCSysclkFormatThermalSensorText",
+            "value": "soc"
+        },
+        {
+            "key": "PCBPrettySysclkFormatThermalSensorText",
+            "value": "主板"
+        },
+        {
+            "key": "PCBSysclkFormatThermalSensorText",
+            "value": "pcb"
+        },
+        {
+            "key": "SkinPrettySysclkFormatThermalSensorText",
+            "value": "表面"
+        },
+        {
+            "key": "SkinSysclkFormatThermalSensorText",
+            "value": "skin"
+        },
+        {
+            "key": "DockedPrettySysclkFormatProfileText",
+            "value": "底座模式"
+        },
+        {
+            "key": "DockedSysclkFormatProfileText",
+            "value": "底座"
+        },
+        {
+            "key": "HandheldPrettySysclkFormatProfileText",
+            "value": "手持模式"
+        },
+        {
+            "key": "HandheldSysclkFormatProfileText",
+            "value": "手持"
+        },
+        {
+            "key": "HandheldChargingPrettySysclkFormatProfileText",
+            "value": "手持充电模式"
+        },
+        {
+            "key": "HandheldChargingSysclkFormatProfileText",
+            "value": "手持充电"
+        },
+        {
+            "key": "HandheldChargingUSBPrettySysclkFormatProfileText",
+            "value": "USB手持充电模式"
+        },
+        {
+            "key": "HandheldChargingUSBSysclkFormatProfileText",
+            "value": "USB手持充电"
+        },
+        {
+            "key": "HandheldChargingOfficialPrettySysclkFormatProfileText",
+            "value": "官方手持充电模式"
+        },
+        {
+            "key": "HandheldChargingOfficialSysclkFormatProfileText",
+            "value": "官方手持充电"
+        },
+        {
             "key": "FatalErrorFatalGuiText",
             "value": "致命错误"
         },
