@@ -14,6 +14,7 @@
 
 FreqChoiceGui::FreqChoiceGui(std::uint32_t selectedHz, std::uint32_t* hzList, FreqChoiceListener listener)
 {
+    InitTrans();
     this->selectedHz = selectedHz;
     this->hzList = hzList;
     this->listener = listener;

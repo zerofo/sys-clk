@@ -17,6 +17,22 @@
             "value": "Overlay与正在运行的sys-clk版本不兼容。\n\n\n请确保所有的东西都已安装并且是最新的。"
         },
         {
+            "key": "SysclkIpcSetOverrideFailedFatalGuiText",
+            "value": "sysclkIpcSetOverride失败"
+        },
+        {
+            "key": "SysclkIpcSetProfilesFailedFatalGuiText",
+            "value": "sysclkIpcSetProfiles失败"
+        },
+        {
+            "key": "SysclkIpcGetProfilesFailedFatalGuiText",
+            "value": "sysclkIpcGetProfiles失败"
+        },
+        {
+            "key": "SysclkIpcGetCurrentContextFailedFatalGuiText",
+            "value": "sysclkIpcGetCurrentContext失败"
+        },
+        {
             "key": "DefaultFreqFarmatListText",
             "value": "无更改"
         },

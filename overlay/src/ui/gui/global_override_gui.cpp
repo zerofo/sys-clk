@@ -15,6 +15,7 @@
 
 GlobalOverrideGui::GlobalOverrideGui()
 {
+    InitTrans();
     for(std::uint16_t m = 0; m < SysClkModule_EnumMax; m++)
     {
         this->listItems[m] = nullptr;
@@ -28,7 +29,7 @@ void GlobalOverrideGui::openFreqChoiceGui(SysClkModule module, std::uint32_t* hz
         Result rc = sysclkIpcSetOverride(module, hz);
         if(R_FAILED(rc))
         {
-            FatalGui::openWithResultCode("sysclkIpcSetOverride", rc);
+            FatalGui::openWithResultCode("SysclkIpcSetOverrideFailedFatalGuiText"_tr, rc);
             return false;
         }
 
@@ -42,7 +43,7 @@ void GlobalOverrideGui::openFreqChoiceGui(SysClkModule module, std::uint32_t* hz
 void GlobalOverrideGui::addModuleListItem(SysClkModule module, std::uint32_t* hzList)
 {
     tsl::elm::ListItem* listItem = new tsl::elm::ListItem(sysclkFormatModule(module, true));
-    listItem->setValue("DefaultFreqFarmatListText"_tr);
+    listItem->setValue(formatListFreqMhz(0));
 
     listItem->setClickListener([this, module, hzList](u64 keys) {
         if((keys & HidNpadButton_A) == HidNpadButton_A)
@@ -75,7 +76,7 @@ void GlobalOverrideGui::refresh()
         {
             if(this->listItems[m] != nullptr && this->listHz[m] != this->context->overrideFreqs[m])
             {
-                this->listItems[m]->setValue((this->context->overrideFreqs[m] != 0 ) ? formatListFreqHz(this->context->overrideFreqs[m]) : "DefaultFreqFarmatListText"_tr);
+                this->listItems[m]->setValue(formatListFreqHz(this->context->overrideFreqs[m]));
                 this->listHz[m] = this->context->overrideFreqs[m];
             }
         }

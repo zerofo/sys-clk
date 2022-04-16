@@ -12,10 +12,10 @@
 
 #include "../format.h"
 #include "fatal_gui.h"
-using namespace tsl;
 
 AppProfileGui::AppProfileGui(std::uint64_t applicationId, SysClkTitleProfileList* profileList)
 {
+    InitTrans();
     this->applicationId = applicationId;
     this->profileList = profileList;
 }
@@ -29,11 +29,11 @@ void AppProfileGui::openFreqChoiceGui(tsl::elm::ListItem* listItem, SysClkProfil
 {
     tsl::changeTo<FreqChoiceGui>(this->profileList->mhzMap[profile][module] * 1000000, hzList, [this, listItem, profile, module](std::uint32_t hz) {
         this->profileList->mhzMap[profile][module] = hz / 1000000;
-        listItem->setValue((this->profileList->mhzMap[profile][module] != 0) ? formatListFreqMhz(this->profileList->mhzMap[profile][module]) : "DefaultFreqFarmatListText"_tr);
+        listItem->setValue(formatListFreqMhz(this->profileList->mhzMap[profile][module]));
         Result rc = sysclkIpcSetProfiles(this->applicationId, this->profileList);
         if(R_FAILED(rc))
         {
-            FatalGui::openWithResultCode("sysclkIpcSetProfiles", rc);
+            FatalGui::openWithResultCode("SysclkIpcSetProfilesFailedFatalGuiText"_tr, rc);
             return false;
         }
 
@@ -44,7 +44,7 @@ void AppProfileGui::openFreqChoiceGui(tsl::elm::ListItem* listItem, SysClkProfil
 void AppProfileGui::addModuleListItem(SysClkProfile profile, SysClkModule module, std::uint32_t* hzList)
 {
     tsl::elm::ListItem* listItem = new tsl::elm::ListItem(sysclkFormatModule(module, true));
-    listItem->setValue((this->profileList->mhzMap[profile][module] != 0) ? formatListFreqMhz(this->profileList->mhzMap[profile][module]) : "DefaultFreqFarmatListText"_tr);
+    listItem->setValue(formatListFreqMhz(this->profileList->mhzMap[profile][module]));
     listItem->setClickListener([this, listItem, profile, module, hzList](u64 keys) {
         if((keys & HidNpadButton_A) == HidNpadButton_A)
         {
@@ -82,7 +82,7 @@ void AppProfileGui::changeTo(std::uint64_t applicationId)
     if(R_FAILED(rc))
     {
         delete profileList;
-        FatalGui::openWithResultCode("sysclkIpcGetProfiles", rc);
+        FatalGui::openWithResultCode("SysclkIpcGetProfilesFailedFatalGuiText"_tr, rc);
         return;
     }
 

@@ -13,8 +13,6 @@
 #include <list>
 
 #include "base_menu_gui.h"
-#include <tesla.hpp>
-using namespace tsl;
 
 using FreqChoiceListener = std::function<bool(std::uint32_t hz)>;
 

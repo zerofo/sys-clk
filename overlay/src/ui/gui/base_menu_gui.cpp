@@ -40,17 +40,17 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
         snprintf(buf, sizeof(buf), "%016lX", context->applicationId);
         renderer->drawString(buf, false, 81, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
 
-        renderer->drawString("ProfileBaseMenuGuiText"_tr.c_str(), false, 266, 90, SMALL_TEXT_SIZE, DESC_COLOR);
-        renderer->drawString(sysclkFormatProfile(context->profile, true), false, 311, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
+        renderer->drawString("ProfileBaseMenuGuiText"_tr.c_str(), false, 246, 90, SMALL_TEXT_SIZE, DESC_COLOR);
+        renderer->drawString(sysclkFormatProfile(context->profile, true), false, 302, 90, SMALL_TEXT_SIZE, VALUE_COLOR);
 
         static struct
         {
             SysClkModule m;
             std::uint32_t x;
         } freqOffsets[SysClkModule_EnumMax] = {
-            { SysClkModule_CPU, 63 },
-            { SysClkModule_GPU, 205 },
-            { SysClkModule_MEM, 340 },
+            { SysClkModule_CPU, 61 },
+            { SysClkModule_GPU, 204 },
+            { SysClkModule_MEM, 342 },
         };
 
         for(unsigned int i = 0; i < SysClkModule_EnumMax; i++)
@@ -68,14 +68,14 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
             SysClkThermalSensor s;
             std::uint32_t x;
         } tempOffsets[SysClkModule_EnumMax] = {
-            { SysClkThermalSensor_SOC, 65 },
-            { SysClkThermalSensor_PCB, 207 },
-            { SysClkThermalSensor_Skin, 340 },
+            { SysClkThermalSensor_SOC, 60 },
+            { SysClkThermalSensor_PCB, 165 },
+            { SysClkThermalSensor_Skin, 268 },
         };
 
         renderer->drawString("ChipBaseMenuGuiText"_tr.c_str(), false, 20, 140, SMALL_TEXT_SIZE, DESC_COLOR);
-        renderer->drawString("PCBBaseMenuGuiText"_tr.c_str(), false, 162, 140, SMALL_TEXT_SIZE, DESC_COLOR);
-        renderer->drawString("SkinBaseMenuGuiText"_tr.c_str(), false, 295, 140, SMALL_TEXT_SIZE, DESC_COLOR);
+        renderer->drawString("PCBBaseMenuGuiText"_tr.c_str(), false, 125, 140, SMALL_TEXT_SIZE, DESC_COLOR);
+        renderer->drawString("SkinBaseMenuGuiText"_tr.c_str(), false, 230, 140, SMALL_TEXT_SIZE, DESC_COLOR);
         for(unsigned int i = 0; i < SysClkModule_EnumMax; i++)
         {
             std::uint32_t millis = this->context->temps[tempOffsets[i].s];
@@ -100,7 +100,7 @@ void BaseMenuGui::refresh()
         Result rc = sysclkIpcGetCurrentContext(this->context);
         if(R_FAILED(rc))
         {
-            FatalGui::openWithResultCode("sysclkIpcGetCurrentContext", rc);
+            FatalGui::openWithResultCode("SysclkIpcGetCurrentContextFailedFatalGuiText"_tr, rc);
             return;
         }
     }
