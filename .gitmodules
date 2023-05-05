@@ -1,0 +1,3 @@
+[submodule "overlay/lib/tesla"]
+	path = overlay/lib/tesla
+	url = https://github.com/zerofo/libtesla
